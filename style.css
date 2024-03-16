@@ -1,0 +1,140 @@
+h1{ 
+color:grey; 
+font-size:28;
+text-transform: uppercase ;
+font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
+}
+
+#contact-form{ color:magenta;}
+
+*li{color:grey;
+   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+   }
+
+#experience{
+margin: 0px;}
+header, footer{
+    background-color: #eeeeee;
+    padding-bottom: 2px
+    padding-top: 2px;
+}
+li b{
+  color: grey
+}
+
+h2{text-font:lucida; 
+   font-size:18; 
+   text-color:#2ffa78;
+   border-bottom: 1px solid #2f5a78;
+   padding-bottom: 2px ;
+   transition: width 5s;
+   transition-timing-function: ease;
+  }
+   h2:hover{
+    width: 250px;
+   }
+/* orange */
+
+.grad{
+  color: #ffffff;
+     height:9px
+     padding: 10px;
+    background: linear-gradient(to right, #b7b7eb, #ffebee);
+
+};
+#position{
+    font-size:18px;
+}
+
+.summary{
+    font-size:16px;
+    line-height: 20px;
+}
+
+body{
+    font-style:verdana;
+}
+
+#position{
+    font-size:24px;
+    font-weight:700;
+}
+
+header{
+    text-align: center;
+}
+
+#copyright{
+text-align: center;    
+}
+
+section, footer{
+    padding:2px 10px;
+}
+
+ul{
+margin: 0px;}
+
+
+header, footer{
+    background-color: #eeeeee;
+    padding-bottom: 2px
+    padding-top: 2px;
+}
+/*FORAMATO DE TABLAS: */
+
+table{
+  border-collapse: collapse;
+  width: 100%;
+}
+th{
+  background-color: #e1d5d5;
+  padding: 2px;
+}
+tr, td{
+  border: 3px solid #ffffff;
+  padding: 3px;
+  text-align: center;
+ 
+}  
+
+tr:nth-child(odd) {
+    background-color: #efe1ec;
+}
+tr:nth-child(even) {
+    background-color: #f3ecf2;
+}
+/*FORMATO DE INPUT, TEXTAREA, BUTTON*/
+textarea,
+    input[type='text'], input[type='email']
+  {
+    border:1px solid green;
+    width:100%;
+    padding: 5px;
+    border-radius: 20px;
+}
+label {
+    font-weight: bold;
+    color:green;
+}
+.placeholder{
+  text-style: italic;
+  text-family: lucida console;
+  text-color: orange;
+}
+
+input[type='button'] {
+    background-color: #9d7b9c;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 25px;
+    font-weight: bold;
+    color: white;
+    width: 100%;
+}
+input[type='button']:hover {
+  background-color: gray;
+  width: 100%;
+}
+
+
