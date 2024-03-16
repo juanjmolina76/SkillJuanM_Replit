@@ -5,3 +5,4 @@ despues practicar Git Merge y todos los comandos de uso practico en Git-
 Parece que la opcion de usar ssh key es paga
 
 -Este cambio lo hice en replit para hacer un commit al repo remoto
+-Este cambio lo hice desde replit app y hago commit al repo remoto de github.
