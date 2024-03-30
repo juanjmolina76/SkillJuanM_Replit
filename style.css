@@ -1,3 +1,7 @@
+* {
+  font-family: 'Monserrat', sans-serif;
+}
+
 h1 {
   color: grey;
   font-size: 28;
@@ -119,7 +123,6 @@ td {
   border: 3px solid #ffffff;
   padding: 3px;
   text-align: center;
-
 }
 
 tr:nth-child(odd) {
