@@ -31,6 +31,7 @@
       <li><b>Senior Software Engineer - </b>Google | 2018 - Present.</li>
       <li><b> Software Engineer - </b>Facebook | 2016 - 2018.
       </li>
+      <li id=suma>Años trabajados: </li>
     </ul>
   </section>
   <section>
@@ -74,8 +75,12 @@
       <label>
         <p>Apellido: <input type="text" name="apellido" id="apellido" /></p>
       </label>
+      <label>
+        <p>Edad: <input type="text" name="edad" id="edad" /></p>
+      </label>
       <label for="email">E-Mail: </label><input placeholder="Email" id="email" type="email" /><br>
       <br>
+      <!--
       <textarea value="Message" id="place">Mensaje: </textarea><br>
       <br>
       <div>
@@ -96,8 +101,9 @@
         </form>
 
       </div>
+      -->
       <br>
-      <input type="button" value="ENVIAR">
+      <button type="reset" onclick="capturar();">ENVIAR</button>
     </form>
   </section>
   <footer>
@@ -105,7 +111,18 @@
       <spam class="dest">Co</spam>ntacts
     </h2>
     <ul id="contacts">
-
+<table id="tabla">
+  <thead>
+    <tr>
+      <th>nombre</th>
+      <th>apellido</th>
+      <th>edad</th>
+      <th>email</th> 
+    </tr>
+  </thead>
+   <!-- <body><td>Andy</td><td>Perez</td><td>18</td><td>m@gmail.com</td> 
+  </body> -->
+</table>
       <li><a href="https://www.sololearn.com/es/profile/27542633" target="_blank">Sololearn</a></li>
       <li><a href="https://www.linkedin.com/in/juan-j-molina-" target="_blank">LinkedIn</a></li>
     </ul>

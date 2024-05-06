@@ -154,7 +154,7 @@ label {
   text-color: orange;
 }
 
-input[type='button'] {
+input[type='button'], button {
   background-color: #9d7b9c;
   border: none;
   border-radius: 25px;
