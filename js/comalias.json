@@ -1,0 +1,37 @@
+
+{
+  "companias":[
+  {
+    "name": "Gran Compañia",
+    "NumeroDeEmpleados": 3500,
+    "Pais": "España",
+    "Rating": 4.5,
+    "phones":[
+        {"personal": "55-55-55-55-55"},
+        {"trabajo": "55-55-55-66-66"}
+    ]
+  },
+  {
+    "name": "Pequña Compañia",
+    "NumeroDeEmpleados": 100,
+    "Pais": "Argentina",
+    "Rating": 3.5,
+    "phones":[
+        {"personal": "895333-5454-55"},
+        {"trabajo": "55-55-5435655-66"}
+    ]     
+  },
+  {
+    "name": "Super Compañia",
+    "NumeroDeEmpleados": 50000,
+    "Pais": "Mexico",
+    "Rating": 5.0",
+    "phones":[
+       {"personal": "55-55-55-55-55"},
+        {"trabajo": "55-55-55-66-66"}
+    ]
+  }
+],
+  "companias2":["Gran Compañia", "Pequña Compañia", "Super Compañia"],
+  "companias3":["Gran Compañia", "Pequña Compañia", "
+}
