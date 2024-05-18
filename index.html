@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css" type="text/css"/>
   <title>Mi Skill</title>
   <link rel="icon" href="icon/Mate_.ico">
   <link rel="" </head>
@@ -75,15 +75,20 @@
     <h2 class="grad">
       <spam class="dest">Co</spam>ntact Form
     </h2>
-    <form id="contact-form">
+    <form action="Show_data.html" target="blank" method="POST" id="contact-form" >
       <label for="name">Name: </label><input placeholder="Nombre" id="name" type="text" /><br>
       <label>
         <p>Apellido: <input type="text" name="apellido" id="apellido" /></p>
       </label>
       <label>
-        <p>Edad: <input type="text" name="edad" id="edad" /></p>
+        <p>Edad: <input type="text" name="edad" placeholder="Edad" id="edad" /></p>
       </label>
       <label for="email">E-Mail: </label><input placeholder="Email" id="email" type="email" /><br>
+      <br>
+<label>
+  <p>Fecha nac.: <input 
+ type="date" id="fecha"
+placeholder="Fecha"</p></label>
       <br>
       <!--
       <textarea value="Message" id="place">Mensaje: </textarea><br>
@@ -127,8 +132,10 @@
             <th>apellido</th>
             <th>edad</th>
             <th>email</th>
+            <th>fecha Nacim.</th>
           </tr>
         </thead>
+        
         <!-- <body><td>Andy</td><td>Perez</td><td>18</td><td>m@gmail.com</td> 
   </body> -->
       </table>

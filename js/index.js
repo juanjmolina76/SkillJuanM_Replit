@@ -46,13 +46,33 @@ function capturar() {
     this.edad = edad;
     this.email = email;
   }
-  //se capturan los datos desde el formulario.
-  var nombreCapturar = document.getElementById("name").value; console.log(nombreCapturar);//
+  //se capturan los datos desde el formulario. tenía .value;
+
+  /*
+
+function comprobar() = {
+  if(nombreCapturar == ' '|| nombreCapturar == ''){
+    alert('debe escribir su nombre')
+  } 
+else{
+  
+}
+  }
+
+*/
+  var nombreCapturar = document.getElementById("name").value;  console.log(nombreCapturar);//
   var apellidoCapturar = document.getElementById("apellido").value; console.log(apellidoCapturar);//
   var edadCapturar = document.getElementById("edad").value; console.log(edadCapturar);//
-  var emailCapturar = document.getElementById("email").value; console.log(emailCapturar);//
+  var emailCapturar = document.getElementById("email").value;// 
+  console.log(emailCapturar); 
+ 
+  var fechaNacCapturar = document.getElementById("fecha").value; 
+  
+console.log(fechaNacCapturar);
+  
+  //
   //se crea un nuevo objeto, nuevoSujeto con los valores capturados.
-  nuevoSujeto = new Persona(nombreCapturar, apellidoCapturar, edadCapturar, emailCapturar);
+  nuevoSujeto = new Persona(nombreCapturar, apellidoCapturar, edadCapturar, emailCapturar,fechaNacCapturar);
   console.log(nuevoSujeto);//
 
   //se crea un nuevo objeto y se guarda en el arraay baseDatos 
@@ -66,7 +86,7 @@ var baseDatos = [];
 function agregar() {
   baseDatos.push(nuevoSujeto);
   console.log(baseDatos);//
-  document.getElementById("tabla").innerHTML += '<body><td>' + nuevoSujeto.nombre + '</td><td>' + nuevoSujeto.apellido + '</td><td>' + nuevoSujeto.edad + '</td><td>' + nuevoSujeto.email + '</td></body>';
+  document.getElementById("tabla").innerHTML += '<body><td>' + nuevoSujeto.nombre + '</td><td>' + nuevoSujeto.apellido + '</td><td>' + nuevoSujeto.edad + '</td><td>' + nuevoSujeto.email + '</td><td>' + nuevoSujeto.fecha + '</td></body>';
 };
 
 //en la consola puedo ver que los datos se guardaron en el array.
