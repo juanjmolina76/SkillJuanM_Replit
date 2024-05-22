@@ -1,6 +1,7 @@
 * {
   font-family: 'Monserrat', sans-serif;
   /*box-sizing: border-box;*/
+  overflow: visible;
 }
 
 h1 {
@@ -42,10 +43,19 @@ h2 {
   padding-bottom: 2px;
   transition: width 5s;
   transition-timing-function: ease;
+  text-shadow: 2px 10px 10px #2f5a78;;
 }
 
 h2:hover {
   width: 250px;
+  scale:(1.5);
+}
+h2::first-letter {
+  transition: all 1s 500ms ease;
+  color: orange;
+}
+h2::selection{
+  color:orange
 }
 
 /* orange */
@@ -107,10 +117,15 @@ footer {
   padding-bottom: 2px padding-top: 2px;
 }
 
+h2::first-letter {
+  color: #ffebee;
+  font-size: 36px;
+}
+
 /*FORAMATO DE TABLAS: */
 
 table {
-  border-collapse: collapse;
+ border-collapse: collapse;
   width: 100%;
 }
 
