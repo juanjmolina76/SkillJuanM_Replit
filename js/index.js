@@ -48,18 +48,7 @@ function capturar() {
   }
   //se capturan los datos desde el formulario. tenía .value;
 
-  /*
-
-function comprobar() = {
-  if(nombreCapturar == ' '|| nombreCapturar == ''){
-    alert('debe escribir su nombre')
-  } 
-else{
   
-}
-  }
-
-*/
   var nombreCapturar = document.getElementById("name").value;  console.log(nombreCapturar);//
   var apellidoCapturar = document.getElementById("apellido").value; console.log(apellidoCapturar);//
   var edadCapturar = document.getElementById("edad").value; console.log(edadCapturar);//
@@ -69,8 +58,19 @@ else{
   var fechaNacCapturar = document.getElementById("fecha").value; 
   
 console.log(fechaNacCapturar);
+
+/*
+function comprobar() = {
+*/
   
-  //
+    if(nombreCapturar == ' '|| nombreCapturar == ''|| apellidoCapturar== ' '|| apellidoCapturar== ''|| edadCapturar== ' '|| edadCapturar== ''
+        || fechaNacCapturar == '' || fechaNacCapturar == ''){
+      alert('debe escribir su nombre')
+    } 
+  else{
+    alert('nombre capturado')
+
+    }  
   //se crea un nuevo objeto, nuevoSujeto con los valores capturados.
   nuevoSujeto = new Persona(nombreCapturar, apellidoCapturar, edadCapturar, emailCapturar,fechaNacCapturar);
   console.log(nuevoSujeto);//
