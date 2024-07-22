@@ -7,5 +7,7 @@ app.get ("/", (req, res) => {
 
 })
 
+
+app.use(express.static(__dirname + '/public'))
 app.listen (port, () => console.log('Estoy arriba en el puerto ${port}'))
 
