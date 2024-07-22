@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "name": "skilljuanm_replit",
+  "description": "Este es un Proyecto originado en Sololearn como skiljuan con un html y un css para dar estilo a na pagina de muestra.\r Subido a Replit y luego creado un repositorio en github para gestionar los cambios a traves de git.\r Igualmente la idea era ademas vincular a un repositorio local en mi pc y a traves de Git hacer una nueva rama para \r despues practicar Git Merge y todos los comandos de uso practico en Git-\r Parece que la opcion de usar ssh key es paga",
+  "version": "1.0.0",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --watch app.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
