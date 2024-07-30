@@ -152,7 +152,9 @@ tr:nth-child(even) {
 /*FORMATO DE INPUT, TEXTAREA, BUTTON*/
 textarea,
 input[type='text'],
-input[type='email'] {
+input[type='email'],
+input[type='number']
+{
   border: 1px solid green;
   width: 100%;
   padding: 5px;

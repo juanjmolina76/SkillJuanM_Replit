@@ -10,11 +10,10 @@ app.get ("/perfil", (req, res) => {
 
 })
 
-app.get ("/listado", (req, res) => {
-    res.sendFile (__dirname + '/src/view/proyectos.html') // 1ero dirijo e pedido "/ al index
+app.get ("/proy/:nombre", (req, res) => {
+    console.log(req.params.nombre)
+    res.sendFile (__dirname + `/src/view/proyectos${req.params.nombre}.html`)//RUTA DINAMICA PARAMETRIZADA
 })
-
-
 
 
 
