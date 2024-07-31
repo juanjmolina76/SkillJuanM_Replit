@@ -29,6 +29,7 @@
     <h2 class="grad">
       <spam class="dest">D</spam>esarrollos Digitales Form
     </h2>
+    <!--CREAR UN OBJETO NUEVO MEDIANTE UN   **  POST  **--> 
     <form action="/"  method="POST" id="contact-form" enctype="application/x-www-form-urlencoded">
         
       <!--HASTA ACA CREA UN FORMULARIO QUE EN app.js está definido como un post que envia un html con un texto y un link para regresar al anterior-->
@@ -44,10 +45,13 @@
       <label for="descripcion:">Descripocion : </label><input placeholder="DESCRIPCION" id="Descripcion" type="text" /><br>
       <br>      
       <br>
-      <button type="submit" name="enviar" value="POST">CREAR</button>
+        <button type="submit" name="enviar" value="POST">CREAR</button>
       <br>
       <div>
-        <button type="button" id="cambio" >MODIFICAR</button>
+        <button type="submit" name="actualizar" value="PUT" id="cambio" >MODIFICAR</button>
+      </div>
+      <div>
+        <button type="submit" name="eliminar" value="DELETE" id="cambio" >ELIMINAR</button>
       </div>
     </form>
   </section>

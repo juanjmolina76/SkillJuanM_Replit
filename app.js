@@ -21,5 +21,15 @@ app.post ('/', (req, res)=> {
     res.send(`<h2>Se hizo algo con ${req.body.precio} en el create</h2><a href="/Proy/Digitales">Volver a la pagina anterior</a>`)
 })
 
+app.put ('/', (req, res)=> {
+     res.send(`<h2>Se hizo algo con ${req.body.actualizar} en el update</h2><a href="/Proy/Digitales">Volver a la pagina anterior</a>`)
+})
+
+app.delete ('/', (req, res)=> {
+    res.send(`<h2>Se hizo algo con ${req.body.eliminar} en el delete</h2><a href="/Proy/Digitales">Volver a la pagina anterior</a>`)
+})
+
+
+
 app.listen (port, () => console.log(`Estoy arriba en el puerto ${port}`))
 
