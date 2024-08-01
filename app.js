@@ -16,21 +16,22 @@ app.get ("/perfil", (req, res) => {
 })
 
 app.get ("/proy/:nombre", (req, res) => {
-    console.log(req.params.nombre)
+    //console.log(req.params.nombre)
     res.sendFile (__dirname + `/src/view/proyectos${req.params.nombre}.html`)//RUTA DINAMICA PARAMETRIZADA
 })
 
-app.post ('/', (req, res)=> {
+app.post ('/proy', (req, res)=> {
+    console.log(req.body.create)
     console.log(req.body)
     res.send(`<h2>Se hizo algo con ${req.body.create} en el create</h2><a href="/Proy/Digitales">Volver a la pagina anterior</a>`)
     res.json(req.body.create)
 })
 
-app.put ('/', (req, res)=> {
+app.put ('/proy', (req, res)=> {
      res.send(`<h2>Se hizo algo con ${req.body.actualizar} en el update</h2><a href="/Proy/Digitales">Volver a la pagina anterior</a>`)//podria usar PATCH
 })
 
-app.delete ('/', (req, res)=> {
+app.delete ('/proy', (req, res)=> {
     res.send(`<h2>Se hizo algo con ${req.body.eliminar} en el delete</h2><a href="/Proy/Digitales">Volver a la pagina anterior</a>`)
 })
 

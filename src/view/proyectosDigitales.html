@@ -30,10 +30,13 @@
       <spam class="dest">D</spam>esarrollos Digitales Form
     </h2>
     <!--CREAR UN OBJETO NUEVO MEDIANTE UN   **  POST  **--> 
+    <!--
     <form action="/"  method="POST" id="contact-form" enctype="application/x-www-form-urlencoded">
-        
+        -->
+
       <!--HASTA ACA CREA UN FORMULARIO QUE EN app.js está definido como un post que envia un html con un texto y un link para regresar al anterior-->
-      <label>
+   
+      <!--  <label>
       <p>Nombre: <input type="text" name="nombre" placeholder="NOMBRE" id="Name"  /></p>
       </label>  
       <label>
@@ -43,21 +46,39 @@
         <p>Tipo: <input type="text" name="tipo" placeholder="TIPO" id="Tipo" /></p>
       </label>
       <label for="descripcion:">Descripocion : </label><input placeholder="DESCRIPCION" id="Descripcion" type="text" /><br>
-      <br>      
+      <br>  
+      
+      
       <br>
         <button type="submit" name="create" value="POST">CREAR</button>
       <br>
       <div>
-        <button type="submit" name="actualizar" value="PUT" id="cambio" >MODIFICAR</button><!--podria usar patch-->
+        <button type="submit" name="actualizar" value="PUT" id="cambio" >MODIFICAR</button> podria usar patch
       </div>
       <div>
         <button type="submit" name="eliminar" value="POST" id="cambio" >ELIMINAR</button>
       </div>
     </form>
   </section>
+-->
 
-  <!--agregado para dividir el formulario por cada metodo -->
-    <form action="/"  method="POST" id="contact-form" enctype="application/x-www-form-urlencoded">
+  <!--agregado para dividir el formulario por cada metodo:  -->
+
+    <form action="/proy"  method="POST" id="contact-form" enctype="application/x-www-form-urlencoded">
+      <label>Crear:<input  type="text" name="create"></label>
+        <input type="submit" value="POST">
+        </form>
+      <br>
+    <form action="/proy?_metodo=PUT"  method="POST" id="contact-form" enctype="application/x-www-form-urlencoded">
+     <label>Actualizar:<input  type="text" name="actualizar"></label>
+        <input type="submit" value="PUT">
+        </form>
+    <br>
+    <form action="/proy?_metodo=DELETE"  method="POST" id="contact-form" enctype="application/x-www-form-urlencoded">
+      <label>Eliminar:<input  type="text" name="eliminar"></label>
+        <input type="submit" value="DELETE">
+        <button type="button">DELETE</button>
+    </form> 
 
   <!-- TABLA DESARROLLOS FIJA-->
   <section>
