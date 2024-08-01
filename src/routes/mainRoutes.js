@@ -3,7 +3,7 @@ const router = express.Router()
 const path = require('path')
 
 router.get ("/perfil", (req, res) => {
-    res.sendFile(__dirname + '/public/perfil.html') // 1ero dirijo e pedido "/" al index
+    res.sendFile(__d irname + '/public/perfil.html') // 1ero dirijo e pedido "/" al index
 
 })
 
@@ -19,7 +19,7 @@ router.post ('/proy', (req, res)=> {
     //res.json(req.body.create)
 })
 
-router.put ('/proy', (req, res)=> {
+router.put ('/proy', (req, res)=> { 
      res.send(`<h2>Se hizo algo con ${req.body.actualizar} en el update</h2><a href="/Proy/Digitales">Volver a la pagina anterior</a>`)//podria usar PATCH
 })
 
