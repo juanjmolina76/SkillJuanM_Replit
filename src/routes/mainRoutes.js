@@ -3,7 +3,7 @@ const router = express.Router()
 const path = require('path')
 
 router.get ("/perfil", (req, res) => {
-    res.sendFile(__d irname + '/public/perfil.html') // 1ero dirijo e pedido "/" al index
+    res.sendFile(__dirname + '/public/perfil.html') // 1ero dirijo e pedido "/" al index
 
 })
 
