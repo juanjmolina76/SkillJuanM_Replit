@@ -14,8 +14,7 @@
     <p><b>a mi perfil</b>
       <a href="../../perfil.html" title="perfil" ><img src="btn_grey.jpg" height="13px" ></a>
     
-      <p><b>a sololearn </b><a href="https://www.sololearn.com" title="sololearn" target="_blank" > <img
-        src="btn_grey.jpg" height="13px" ></a></p></p>
+     
 </aside>
 
 <body <!--style = "background-color: grey"-->
@@ -83,35 +82,37 @@
   <!-- TABLA DESARROLLOS FIJA-->
   <section>
     <h2 class="grad">DESAROLLOS DIGITALES</h2>
-    <table id="skills">
+    <table id="tabla">
+      <thead>
       <tr>
-        <th>NOMBRE</th>
-        <th>TIPO</th>
+        <th>Nombre</th>
+        <th>Descripcion</th>
+        <th>Precio</th>
+        <th>Img</th>
+        <th>id_tipo</th>
       </tr>
+      </thead>
       <tr>
+        <!--
         <td>c++</td>
         <td>semaforo</td>
-      </tr>
-      <tr>
-        <td>html</td>
-        <td>recurso</td>
-      </tr>
-      <tr>
-        <td>css</td>
-        <td>estilos</td>
-      </tr>
-      <tr>
-        <td>Nodejm</td>
-        <td>framework</td>
-      </tr>
-      <tr>
-        <td>RRails</td>
-        <td>framework</td>
-      </tr>
+        -->
+
+         <!-- <body><td>Andy</td><td>Perez</td><td>18</td><td>m@gmail.com</td> 
+  </body> -->
     </table>
   </section>
   <section>
 
+    <form action="/proy" method="POST" enctype="application/x-www-form-urlencoded">
+      <input type="text" name="nombre">
+      <input type="text" name="descripcion">
+      <input type="text" name="precio">
+      <input type="text" name="img">
+      <input type="text" name="id_tipo">
+      <input type="submit" value="Crear Nuevo">
+    </form><br>
+    
 
   </section>
   <footer>
@@ -125,6 +126,7 @@
 
 
   </footer>
+  <script type="text/javascript" src="js/proyectos.js></script>
 </body>
 
 </html>
