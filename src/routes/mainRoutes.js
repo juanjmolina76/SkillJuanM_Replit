@@ -3,16 +3,13 @@ const router = express.Router()
 const controladores = require('../controlers/mainController')
 const path = require('path')
 
-router.get ("/perfil", controladores.getListado)
+/*router.get ("/perfil", controladores.getListado)
     /*(req, res) => {
     res.sendFile(__dirname + '/public/perfil.html') // 1ero dirijo e pedido "/" al index
 })
 */
 
-router.get ("/proy/:nombre", (req, res) => {
-    //console.log(req.params.nombre)
-    res.sendFile(path.resolve(__dirname + `./../../public/proyectos${req.params.nombre}.html`))//RUTA DINAMICA PARAMETRIZADA
-})
+router.get ("/proy/:nombre", controladores.getListado) 
 
 router.post ('/proy', controladores.crearRegistro)
     /*(req, res)=> {
