@@ -40,7 +40,7 @@ getListado: async (req, res) => {
             const sql = `INSERT INTO producto (nombre, descripcion, precio, img, id_tipo) VALUES (?,?,?,?,?);`
             const creado = await conn.query(sql, [req.body.nombre, req.body.descripcion, parseFloat(req.body.precio), req.body.img, req.body.id_tipo])
             console.log(creado)
-            res.redirect(`/proyectosDigitales.html`)
+            res.redirect('/proyectosDigitales.html')
         }catch (error){
             throw error
         }finally{

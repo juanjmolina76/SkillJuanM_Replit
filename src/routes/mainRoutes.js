@@ -11,7 +11,7 @@ const path = require('path')
 
 router.get ("/proy/:nombre", controladores.getListado) 
 
-router.post ('/proy', controladores.crearRegistro)
+router.post (`/proy/:nombre`, controladores.crearRegistro)
     /*(req, res)=> {
     //console.log(req.body.create)
     //console.log(req.body)
@@ -24,7 +24,7 @@ router.put ('/proy', (req, res)=> {
 })
 
 router.delete ('/proy', (req, res)=> {
-    res.send(`<h2>Se hizo algo con ${req.body.eliminar} en el delete</h2><a href="/Proy/Digitales">Volver a la pagina anterior</a>`)
+    res.send(`<h2>Se hizo algo con ${req.body.eliminar} en el delete</h2><a href="/ProyectosDigitales.html">Volver a la pagina anterior</a>`)
 })
 
 module.exports = router
