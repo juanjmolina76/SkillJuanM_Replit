@@ -2,7 +2,7 @@ const express = require(`express`)
 const override = require('method-override')
 const rutas = require('./src/routes/mainRoutes.js')
 const app = express()
-const path = require('path')
+//const path = require('path')
 
 
 const port = 8080 || process.env.PORT || 3000

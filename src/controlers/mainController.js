@@ -7,13 +7,13 @@ getListado: async (req, res) => {
     res.sendFile(__dirname + '/public/perfil.html') // 1ero dirijo e pedido "/" al index
 
 }*/
-
+/*
     getListado: async (req,res) =>{
     //console.log(req.params.nombre)
-    res.sendFile(path.resolve(__dirname + `./../../public/proyectos${req.params.nombre}.html`))//RUTA DINAMICA PARAMETRIZADA
+    res.sendFile(__dirname + `./../public/proyectosDigitales.html`)//RUTA DINAMICA PARAMETRIZADA
 },
 
-
+*/
 
 
     getListado: async (req, res) => {
@@ -40,7 +40,7 @@ getListado: async (req, res) => {
             const sql = `INSERT INTO producto (nombre, descripcion, precio, img, id_tipo) VALUES (?,?,?,?,?);`
             const creado = await conn.query(sql, [req.body.nombre, req.body.descripcion, parseFloat(req.body.precio), req.body.img, req.body.id_tipo])
             console.log(creado)
-            res.redirect('/proyectosDigitales.html')
+            res.redirect(`/proyectosDigitales.html`)
         }catch (error){
             throw error
         }finally{
@@ -48,5 +48,5 @@ getListado: async (req, res) => {
         }  
         },
     }
-
+//${req.params.nombre}
 
