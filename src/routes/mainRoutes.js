@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const controladores = require('../controlers/mainController')
-const path = require('path')
+//const path = require('path')
 
 /*router.get ("/perfil", controladores.getListado)
     /*(req, res) => {
@@ -9,7 +9,7 @@ const path = require('path')
 })
 */
 
-router.get ("/proy/:nombre", controladores.getListado) 
+router.get ('/proy/:nombre', controladores.getListado) 
 
 router.post (`/proy/:nombre`, controladores.crearRegistro)
     /*(req, res)=> {
@@ -23,8 +23,7 @@ router.put ('/proy', (req, res)=> {
      res.send(`<h2>Se hizo algo con ${req.body.actualizar} en el update</h2><a href="/Proy/Digitales">Volver a la pagina anterior</a>`)//podria usar PATCH
 })
 
-router.delete ('/proy', (req, res)=> {
-    res.send(`<h2>Se hizo algo con ${req.body.eliminar} en el delete</h2><a href="/ProyectosDigitales.html">Volver a la pagina anterior</a>`)
-})
+router.delete ('/proy/:nombre', controladores.eliminar)
+
 
 module.exports = router

@@ -2,19 +2,6 @@ const { conn } = require('../db/dbconnect')
 
 module.exports = {
 
-/*
-getListado: async (req, res) => {
-    res.sendFile(__dirname + '/public/perfil.html') // 1ero dirijo e pedido "/" al index
-
-}*/
-/*
-    getListado: async (req,res) =>{
-    //console.log(req.params.nombre)
-    res.sendFile(__dirname + `./../public/proyectosDigitales.html`)//RUTA DINAMICA PARAMETRIZADA
-},
-
-*/
-
 
     getListado: async (req, res) => {
         try{
@@ -27,15 +14,8 @@ getListado: async (req, res) => {
         }
     },
 
-   /* crearRegistro: async (req, res)=>{
-            console.log(req.file)
-    },*/
-
     crearRegistro: async (req, res)=> {
-        //console.log(req.body.create)
-        //console.log(req.body)
-       // res.json({mensaje: 'esto es un json simple'})
-        //res.json(req.body.create)
+        console.log(req.file)
         try{
             const sql = `INSERT INTO producto (nombre, descripcion, precio, img, id_tipo) VALUES (?,?,?,?,?);`
             const creado = await conn.query(sql, [req.body.nombre, req.body.descripcion, parseFloat(req.body.precio), req.body.img, req.body.id_tipo])
@@ -47,6 +27,10 @@ getListado: async (req, res) => {
             conn.releaseConnection()
         }  
         },
-    }
-//${req.params.nombre}
+
+    eliminar: async (req, res)=>{
+        const eliminado = await conn.query(`DELETE FROM producto WHERE id=?`, req.body.idEliminar)
+        res.redirect('/proyectosDigitales.html')
+    },
+}
 

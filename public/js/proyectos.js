@@ -6,15 +6,15 @@ document.querySelector('body').onload = async() => {
     datos.forEach(registro => {
         listaHTML.innerHTML += `
             <body>
-            <form method="POST" action="/proy/Digitales?_metodo=DELETE" style="display: flex">
+            <form method="POST" action="/proy/:nombre?_metodo=DELETE" style="display: flex">
                  <td>${registro.nombre}</td>
                  <td>${registro.descripcion}</td>
                  <td>${registro.precio}</td>
                  <td>${registro.img}</td>
                  <td>${registro.id_tipo}</td>
-                 <input type="hidden" name="idEliminar" value="${registro.id}">
-                 <td><button><a href="/modificar/${registro.id}">Modificar</a></td>
-                 <td><input type="submit" value="Eliminar"></td>
+                    <input type="hidden" name="idEliminar" value="${registro.id}">
+                    <td><button><a href="/modificar/${registro.id}">Modificar</a></td>
+                    <td><input type="submit" value="Eliminar"></td>
             </form>
             </body>`;
         });
