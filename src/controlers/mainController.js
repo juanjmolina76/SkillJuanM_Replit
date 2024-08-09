@@ -26,11 +26,13 @@ module.exports = {
         }finally{
             conn.releaseConnection()
         }  
-        },
+    },
 
     eliminar: async (req, res)=>{
+        console.log(req.body.idEliminar);
         const eliminado = await conn.query(`DELETE FROM producto WHERE id=?`, req.body.idEliminar)
+        console.log(eliminado);
         res.redirect('/proyectosDigitales.html')
-    },
+    }
 }
 
