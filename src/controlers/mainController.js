@@ -33,6 +33,17 @@ module.exports = {
         const eliminado = await conn.query(`DELETE FROM producto WHERE id=?`, req.body.idEliminar)
         console.log(eliminado);
         res.redirect('/proyectosDigitales.html')
+    },
+
+    getModificar: async (req, res)=>{
+        const  [ modificar ] = await conn.query(`SELECT * FROM producto WHERE id=?`, req.params.id)
+        console.log(modificar);
+        console.log('Registro:', registro);
+        res.render('modificar', {
+            tituloDePagina: 'Modificar datos de registros',
+            //registro: modificar[0]
+        })
+
     }
 }
 

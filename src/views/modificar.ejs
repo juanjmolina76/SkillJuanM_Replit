@@ -1,0 +1,22 @@
+<%- include('partials/header')%>
+
+
+<body>
+<h2 class="grad">MODIFICAR PROYECTO</h2>
+<br>
+<h1><%=tituloDePagina%></h1>
+<form action="/modificar?_metodo=PUT" method="POST" >
+    <p>Nombre:<input type="text" name="nombre" value="<%=registro.nombre%>"></p>
+    <p>Descripcion:<input type="text" name="descripcion" value="<%=registro.descripcion%>"></p>
+    <p>Precio:<input type="text" name="precio" value="<%=registro.precio%>"></p>
+    <p>Imagen:<input type="text" name="img" value="<%=registro.img%>"></p>
+    <p>Tipo:<input type="text" name="id_tipo" value="<%=registro.id_tipo%>"></p>
+    <input type="hidden" name="id_Mod" value="<%=registro.id%>">
+    <input type="submit" value="Actualizar">
+  </form><br>
+
+</body>
+<!--link rel="stylesheet" href="/css/style.css" type="text/css"/-->
+
+
+<%- include('partials/footer')%>
