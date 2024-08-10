@@ -7,6 +7,10 @@ const app = express()
 
 const port = 8080 || process.env.PORT || 3000
 
+//para utilizar motor de vistas ejs
+app.set('view engine', 'ejs')
+app.set('views', (__dirname + '/src/views'))
+
 app.use(override('_metodo'))
 app.use(express.static(__dirname + '/public')); //2do indico dónde buscará css, js,etc de los archivos estaticos
 //igualmente al llamarse index al ser static public, busca el primer archivo estatico index
