@@ -11,10 +11,11 @@ const port = 8080 || process.env.PORT || 3000
 app.set('view engine', 'ejs')
 app.set('views', (__dirname + '/src/views'))
 
-app.use(override('_metodo'))
+
 app.use(express.static(__dirname + '/public')); //2do indico dónde buscará css, js,etc de los archivos estaticos
 //igualmente al llamarse index al ser static public, busca el primer archivo estatico index
 app.use(express.urlencoded({extended: true}))
+app.use(override('_metodo'))
 app.use(express.json());
 
 app.use('/', rutas)

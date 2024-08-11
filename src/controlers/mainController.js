@@ -38,12 +38,22 @@ module.exports = {
     getModificar: async (req, res)=>{
         const  [ modificar ] = await conn.query(`SELECT * FROM producto WHERE id=?`, req.params.id)
         console.log(modificar);
-        console.log('Registro:', registro);
+        
+        //console.log('Registro:', registro);
         res.render('modificar', {
             tituloDePagina: 'Modificar datos de registros',
-            //registro: modificar[0]
+            registro: modificar[0]
         })
 
+    },
+    actualizar: async (req, res)=> {
+        console.log(req.body)
+        //res.send(`<h2>se hizo algo con ${req.body.actualizar} en el update`)
+        const sql = `UPDATE producto SET nombre=?, descripcion=?, precio=?, img=? WHERE id=?;`
+        const {idMod, nombre, descripcion, precio, img, id_tipo} = req.body
+        const modificado = await conn.query(sql, [nombre, descripcion, precio, img, idMod])
+        console.log(modificado)
+        res.redirect('/proyectosDigitales.html') 
     }
 }
 

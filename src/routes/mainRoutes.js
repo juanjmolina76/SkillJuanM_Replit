@@ -25,8 +25,8 @@ router.put ('/proy', (req, res)=> {
 
 router.delete ('/proy/:nombre', controladores.eliminar)
 
-router.get (`/modificar/:id`, controladores.getModificar)
+router.get ('/modificar/:id', controladores.getModificar)
 
-//router.put ('/modificar', controladores.actualizar)
+router.put ('/modificar', controladores.actualizar)
 
 module.exports = router
