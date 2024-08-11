@@ -10,6 +10,7 @@ document.querySelector('body').onload = async() => {
                  <td>${registro.nombre}</td>
                  <td>${registro.descripcion}</td>
                  <td>${registro.precio}</td>
+                 <td><img src="/img/${registro.img} width="50"></td>
                  <td>${registro.img}</td>
                  <td>${registro.id_tipo}</td>
                     <td>

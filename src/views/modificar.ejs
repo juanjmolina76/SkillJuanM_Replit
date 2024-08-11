@@ -11,12 +11,20 @@
     <p>Precio:<input type="number" name="precio" value="<%=registro.precio%>"/></p>
     <p>Imagen:<input type="text" name="img" value="<%=registro.img%>"></p>
     
+    <p><img src="/img/<%= registro.img %>" alt="<%=registro.nombre%>" width="200"></p>    <!--podria inyectar la imagen en el js dinamico en listado.js(con ${ }-->
+
     <input type="hidden" name="idMod" value="<%=registro.id%>">
+    
     <input type="submit" value="Actualizar">
+    <p>Reemplazar imagen:<input type="file" id="imagen" name="img"></p>
+    <!-- se crea este hidden, porque no esta llegando la imagen actual al input
+				     si no elige ninguna foto y ya tenia, queda vacio el campo en la base -->
+    <!--input type="hidden" name="imagenActual" value="<%= registro.img %>"-->
   </form><br>
 
 </body>
 <!--link rel="stylesheet" href="/css/style.css" type="text/css"/-->
+<!--saqué el campo par modificar el id_tipo ya que no me deja creo al ser una FOREINGH-->
 <!--p>Tipo:<input type="number" name="tipo" value="registro.id_tipo"></p-->
 
 <%- include('partials/footer')%>
