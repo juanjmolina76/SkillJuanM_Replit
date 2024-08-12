@@ -18,7 +18,7 @@ module.exports = {
         console.log(req.file)
         try{
             const sql = `INSERT INTO producto (nombre, descripcion, precio, img, id_tipo) VALUES (?,?,?,?,?);`
-            const creado = await conn.query(sql, [req.body.nombre, req.body.descripcion, parseFloat(req.body.precio), req.body.img, req.body.id_tipo])
+            const creado = await conn.query(sql, [req.body.nombre, req.body.descripcion, parseFloat(req.body.precio), req.body.img, req.body.id_tipo, ]) //req.file.filename
             console.log(creado)
             res.redirect('/proyectosDigitales.html')
         }catch (error){
