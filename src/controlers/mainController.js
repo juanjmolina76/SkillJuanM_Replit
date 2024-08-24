@@ -36,6 +36,7 @@ module.exports = {
     },
 
     getModificar: async (req, res)=>{
+        console.log(req.session.userId)
         const  [ modificar ] = await conn.query(`SELECT * FROM producto WHERE id=?`, req.params.id)
         console.log(modificar);
         
@@ -48,6 +49,7 @@ module.exports = {
     },
     actualizar: async (req, res)=> {
         console.log(req.body)
+        
         //res.send(`<h2>se hizo algo con ${req.body.actualizar} en el update`)
         const sql = `UPDATE producto SET nombre=?, descripcion=?, precio=?, img=? WHERE id=?;`
         const {idMod, nombre, descripcion, precio, img, id_tipo} = req.body

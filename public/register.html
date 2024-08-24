@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Registro</title>
+		<link rel="stylesheet" type="text/css" href="CSS/styles.css">
+  </head>
+  <body style='display: block;'>
+	<form action="/login/registro" method="POST" enctype="application/x-www-form-urlencoded"><!--la RAMA es /loguin  por eso va a /login/registro  -->
+    	<label>Usuario: <input type="text" name="user" required></label>
+		<label>Email: <input type="email" name="email"></label>
+    	<label>Contraseña: <input type="text" name="password" required></label>
+		
+    	<!--input type="hidden" name="id_role" value="2"-->
+    	<button type="submit">Registarme</button>
+	</form>
+	<a href="/login.html">Regresar</a>
+</body>
+</html>

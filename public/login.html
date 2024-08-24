@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Login</title>
+		<!--link rel="stylesheet" type="text/css" href="/CSS/styles.css"-->
+  </head>
+<body style='display: block;'>
+	<form action="" method="POST" enctype="application/x-www-form-urlencoded"><!-- el action deberia ser "/login/register" 
+		porque la rama es /loguin y dentro de la rama  es /loguin/registro-->
+    	<label>Usuario: <input  type="text" name="user"></label>
+    	<label>Contraseña: <input  type="text" name="password"></label>
+    	<!--button type="button" onclick="login()">Login</button--> <!-- hago con onclic() (q es un eventlistener) para que 
+    		verifique adicionalmente que tengo un token que voy a guardar gracias a ese event listener-->
+		<button type="button" onclick="login()">Login</button>
+		</form>
+	<a href="/register.html">Registrarme</a>
+	<script type="text/javascript" src="js/login.js"></script>
+</body>
+</html>
+
+
+<!--tengo que poner un url en el action y sacar el onclick para que el boton redirija a la url pero previamente
+deberia autentificar que se hizo la comparacion de usuario y password en el loginController-->

@@ -1,8 +1,13 @@
 const express = require(`express`)
 const override = require('method-override')
 const rutas = require('./src/routes/mainRoutes.js')
-const app = express()
-//const path = require('path')
+const login = require ('./src/routes/loginRoutes.js')
+const app = express()//levanto express sessions
+const auth = require('./src/config/auth')//verificar que el usuario tenga AUTORIZACION para entrar a todas las rutas de mi RAMA
+const session = require('express-session')
+//const bodyParser = require ('body-parser')
+
+const path = require('path')
 
 
 const port = 8080 || process.env.PORT || 3000
@@ -19,12 +24,25 @@ app.use(express.urlencoded({extended: true}))
 app.use(override('_metodo'))
 app.use(express.json());
 
+app.use(session({//inicializo express sessions y lo configuro
+    secret: "S3cr3t_H@sh01",
+    resave: false,
+    saveUninitialized: false,
+})) 
+
+
+app.use('/login', login)//login/login  o /login/registro todo lo que venga con / login lo va a buscar 
+//al archivo loginRoutes
 //app.use('/admin', rutasAdmin) // /admin/loquesea /admin/xyz
-app.use('/', rutas)
-//siempre despues de las rutas por manenjo de errores:
+app.use('/',  rutas)//('/', auth, rutas) //AUTORIZACION PARA todas LAs RAMAs  // en vez de autenticar una sola ruta en mainRoutes.js //
+
+//app.use('/', auth, rutasAuth)//para que requira el token          //
+//app.use('/admin', rutasAdmin)
+//app.use('/admin', auth, rutasAdmin )
 
 //app.get('/algo',( req, res) =>res.send("hola"))
 
+//siempre despues de las rutas por manenjo de errores:
 //manejo de errores
 app.use((req, res, next) => {
     res.status(404).send(`<h1 style="color:red">Recurso no encontrado!</h1>`)

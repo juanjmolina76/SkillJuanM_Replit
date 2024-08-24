@@ -1,5 +1,19 @@
-document.querySelector('body').onload = async() => {
-    const res = await fetch(`http://localhost:8080/proy/Digitales`)
+document.querySelector('body').onload = async () => {
+	
+	const token = localStorage.getItem('jwt-token')
+
+	const res = await fetch(`http://localhost:8080/proy/digitales`, {
+		method: 'GET',
+		headers: {
+			"Content-Type": "application/json",
+			"Authorization": `Bearer ${token}`
+		}
+	})
+    if(!res.ok){
+        window.location.href="/login.html"
+        throw Error("Problemas en login")
+    }  else{
+
     const datos = await res.json()
     let listaHTML = document.querySelector(`#tabla`)  
     listaHTML.innerHTML = ''
@@ -25,6 +39,8 @@ document.querySelector('body').onload = async() => {
             </body>`;
         });
 }
-
+}
 /* <button type="button" class="" onclick="eliminarRegistro${registro.id}>" */
 /* <button><a href="/modificar/${registro.id}">Modificar</a></button><br> */
+
+//const guardarId = (e) => localStorage.setItem(`id`, e.target.id)*/
