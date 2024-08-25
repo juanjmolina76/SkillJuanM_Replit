@@ -22,7 +22,7 @@ const validarCampos = () => {
 //verifique adicionalmente que tengo un token que voy a guardar gracias a ese event listener
     
 
-//si uso express session lo voy a tener que anular xq no voy a usar token paralelamente?
+//si uso express session lo voy a tener que anular xq no voy a usar token paralelamente???: no porque pueden convivir
 
 const login = async () => {
   if(validarCampos()){

@@ -22,7 +22,7 @@ const logout = async () => {
 }
 /*
 
-//solo si es admin puede ver el ABM de Productos
+//solo si es admin (id_rol = 1) puede ver el ABM de Productos
 const idRol = localStorage.getItem('idRol')
 let abmProductos = document.getElementById("abmProductos")
 
