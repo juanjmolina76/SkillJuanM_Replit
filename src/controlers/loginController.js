@@ -43,7 +43,7 @@ module.exports = {
 },
 
 //agrego VERIFICAR TOKEN
-/*
+
 verificarToken: async (req, res) => {
     try {
 
@@ -54,6 +54,6 @@ verificarToken: async (req, res) => {
     } catch (error) {
         res.status(500).send({ auth: false, message: "Token Expirado" })
         
-    }*/
+    }
 }
-    
+}

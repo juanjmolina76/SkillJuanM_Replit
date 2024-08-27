@@ -5,6 +5,6 @@ const loginController = require('../controlers/loginController')//require('./../
 router.post('/registro', loginController.registro)
 router.post('/login', loginController.login)
 router.get('/logout', loginController.logout)
-//router.get('/verificarToken/:token', loginController.verificarToken)
+router.get('/verificarToken/:token', loginController.verificarToken)
 
 module.exports = router
