@@ -11,7 +11,12 @@ h1 {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-#contact-form {
+
+#create-form{
+  color: magenta;
+}
+
+#contact-form{
   color: magenta;
 }
 

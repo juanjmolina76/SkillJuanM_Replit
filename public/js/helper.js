@@ -11,8 +11,8 @@ const verificarToken = async () => {
 
 
 verificarToken()
-
-
+/*
+/*   **** YA TENGO EL LOGOUT EN login.js ***
 const logout = async () => {
     localStorage.removeItem("jwt-token")
 
@@ -20,17 +20,20 @@ const logout = async () => {
 
    
 }
-/*
+*/
+
 
 //solo si es admin (id_rol = 1) puede ver el ABM de Productos
 const idRol = localStorage.getItem('idRol')
-let abmProductos = document.getElementById("abmProductos")
+let solo_Admin = document.getElementById("solo_Admin")
 
-if (idRol == 2 && abmProductos != null) {
-    abmProductos.hidden = true
+if (idRol == 2 && solo_Admin != null && idRol !== 1) {
+    solo_Admin.hidden = true   
 }
 
+
 //solo si es admin pueden ir al ABM de Productos o al modificar
+/*
 const pathActual = window.location.pathname;
 
 
