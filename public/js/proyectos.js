@@ -2,7 +2,8 @@ document.querySelector('body').onload = async () => {
 	
 	const token = localStorage.getItem('jwt-token')
 
-	const res = await fetch(`http://localhost:8080/proy/digitales`, {
+	const res = await fetch(`http://localhost:8080/proy/digitales`, {//en REPLIT eliminar el local host,
+        //dejar solo la ruta`/proy/digitales`
 		method: 'GET',
 		headers: {
 			"Content-Type": "application/json",
