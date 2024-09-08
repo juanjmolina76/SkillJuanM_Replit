@@ -56,6 +56,41 @@ module.exports = {
         const modificado = await conn.query(sql, [nombre, descripcion, precio, img, idMod])
         console.log(modificado)
         res.redirect('/proyectosDigitales.html') 
+    },
+
+    //NEW
+    getProys: async (req, res) => {
+        try{
+            const [ registros] = await conn.query(`SELECT * FROM producto`)
+            //res.json(registros)
+            
+            
+            res.render('proys',{
+                productos: registros,
+                tituloDePagina: 'Cards de Proyectos',
+                
+            })
+            console.log(registros)
+        } catch (error){
+            throw error
+        } finally {
+            conn.releaseConnection()
+
+        }
+       //NEW
+
+
+
+
+
+
     }
+
+
+
+
+
+
+
 }
 

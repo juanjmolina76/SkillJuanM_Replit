@@ -59,4 +59,6 @@ router.get ('/modificar/:id',  isLogged, controladores.getModificar)/*estaba com
 
 router.put ('/modificar', /*isLogged,*/ controladores.actualizar)//le agrego el midelware (que estté logueado) para usar express sessions
 
+router.get('/proys', controladores.getProys)//NEW
+
 module.exports = router

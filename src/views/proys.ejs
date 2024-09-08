@@ -1,0 +1,33 @@
+<%- include('partials/header2')%>
+  
+  <!-- Div CARD de DESARROLLOS FIJA-->
+  
+     <body>
+     <section>
+        <h2 class="grad">DESARROLLOS DIGITALES cards</h2>
+        <br>
+        <h1><%=tituloDePagina%></h1>
+        <p><%=productos%></p>
+
+
+            <div class="container__cards" id="card">        
+     <% productos.forEach(producto => { %>
+        <div>
+          <div class="cover">
+            <h2><%= producto.nombre %></h2>
+             <p><%= producto.descripcion %></p>
+             <p><%= producto.precio %></p>
+             <p><%= producto.img %></p>
+             <p><img src="/img/<%= producto.img %>" width="50"></p>
+             <p><%= producto.id_tipo %></p>
+          </div>
+        </div>
+     <%
+      })
+     %>
+      </div>
+    </section>
+        
+     </body>
+     
+<%- include('partials/footer')%>
