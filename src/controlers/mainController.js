@@ -70,7 +70,7 @@ module.exports = {
                 tituloDePagina: 'Cards de Proyectos',
                 
             })
-            console.log(registros)
+           console.log(registros)
         } catch (error){
             throw error
         } finally {

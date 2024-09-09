@@ -7,7 +7,7 @@
         <h2 class="grad">DESARROLLOS DIGITALES cards</h2>
         <br>
         <h1><%=tituloDePagina%></h1>
-        <p><%=productos%></p>
+        <!--p>%productos%></p-->
 
 
             <div class="container__cards" id="card">        
@@ -18,7 +18,7 @@
              <p><%= producto.descripcion %></p>
              <p><%= producto.precio %></p>
              <p><%= producto.img %></p>
-             <p><img src="/img/<%= producto.img %>" width="50"></p>
+             <div class="circle"><img src="/img/<%= producto.img %>" width=""></div>
              <p><%= producto.id_tipo %></p>
           </div>
         </div>

@@ -51,6 +51,10 @@ h2 {
   text-shadow: 2px 10px 10px #2f5a78;;
 }
 
+img{
+  width: 10rem;
+}
+
 h2:hover {
   width: 250px;
   scale:(1.5);
@@ -86,6 +90,31 @@ h2::selection{
   font-size: 16px;
   line-height: 20px;
 }
+
+.container__cards {
+  max-width: 1400px;
+  margin: auto;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* Cambiado a wrap para permitir envolver las cartas */
+  justify-content: space-between;
+}
+
+
+.cover {
+  padding: 10px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow:  -7px -7px 20px rgba(0, 0, 0, 0.2),
+               -7px -7px 20px rgba(0, 0, 0, 0.2);
+  
+}
+.cover:hover {
+  scale:(1.5);
+}
+
 
 body {
   font-style: verdana;
@@ -194,3 +223,23 @@ input[type='button']:hover {
   width: 100%;
 }
 
+/* CELULARES */
+/* Medias Querys/Breakpoints/Responsive */
+@media (100px <=width <=460px) {
+
+  .container__cards {
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+/* TABLET */
+@media (461px <=width <=768px) {
+
+
+}
+
+/* PC */
+@media (769px <=width) {
+
+}
