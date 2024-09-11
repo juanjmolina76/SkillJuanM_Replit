@@ -61,4 +61,6 @@ router.put ('/modificar', /*isLogged,*/ controladores.actualizar)//le agrego el 
 
 router.get('/proys', controladores.getProys)//NEW
 
+router.get('/detalleProducto/:id', controladores.getDetalleProducto )//NUEVO
+
 module.exports = router

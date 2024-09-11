@@ -1,0 +1,31 @@
+<%- include('partials/header2')%>
+
+<body>
+<section>
+    <h2 class="grad">DET PROYs</h2>
+    <br>
+    <h1><%=tituloDePagina%></h1>
+
+        <div class="container__cards" id="card">
+            <div class="cover">
+                <img src="/img/<%= producto.img%>" alt="<%= producto.nombre %>" >
+                
+                </div>
+                <div class="descripcion">
+                    <h2><%= producto.id_nombre%>
+                        </h2>
+                    <h3><%= producto.precio%>
+                        </h3>
+                    <p>
+                        <%=producto.descripcion %>
+                        </p>
+                    
+                    </div>
+
+
+            </div>
+
+</section>
+</body>
+
+<%- include('partials/footer')%>

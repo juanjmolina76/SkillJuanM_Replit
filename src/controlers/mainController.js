@@ -78,19 +78,22 @@ module.exports = {
 
         }
        //NEW
+    },
 
-
-
-
-
-
+    //NUEVO
+    getDetalleProducto: async (req, res) => {
+        try{
+            const idProd = req.params.id
+            console.log(req.params.id)
+            const [registro] = await conn.query(`SELECT p.*, t.id AS tipo
+                                                FROM producto p
+                                                JOIN tipo t ON p.id_tipo = t.id
+                                                WHERE p.id = ${idProd}`);
+            res.render('detalleProducto', { producto: registro[0], tituloDePagina: 'Detalle de Proyecto'});
+        }catch(error){
+            throw error;
+        } finally{
+            conn.releaseConnection();
+        }
+        }
     }
-
-
-
-
-
-
-
-}
-
