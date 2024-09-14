@@ -27,9 +27,22 @@ const logout = async () => {
 const idRol = localStorage.getItem('idRol')
 let solo_Admin = document.getElementById("solo_Admin")
 
-if (idRol == 2 && solo_Admin != null && idRol !== 1) {
-    solo_Admin.hidden = true   
+
+if (idRol == 2 && solo_Admin != null  ) 
+     {
+    solo_Admin.hidden = true;
+    
 }
+/*
+
+let submit_button = document.getElementById("submit_button")
+if (idRol == 2  ){
+    submit_button.hidden = true;
+}
+
+*/
+//&& submit_button != null
+//submit_button.hidden = true;
 
 
 //solo si es admin pueden ir al ABM de Productos o al modificar

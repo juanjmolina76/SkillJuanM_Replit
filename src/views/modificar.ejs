@@ -15,7 +15,7 @@
 
     <input type="hidden" name="idMod" value="<%=registro.id%>">
     
-    <input type="submit" value="Actualizar">
+    <input type="submit" value="Actualizar" id="submit_button">
     <!--p>Reemplazar imagen:<input type="file" id="img" name="img"></p-->
 
     <!-- se crea este hidden, porque no esta llegando la imagen actual al input
@@ -23,6 +23,14 @@
     <!--input type="hidden" name="imagenActual" value=">%= registro.img %>"-->
   </form><br>
 <script>src="./../js/helper.js"</script>
+<script>
+  const idRol = localStorage.getItem('idRol');
+  let submit_button = document.getElementById("submit_button");
+  
+  if (idRol == 2) {
+      submit_button.hidden = true;
+  }
+</script>
 </body>
 <!--link rel="stylesheet" href="/css/style.css" type="text/css"/-->
 <!--saqué el campo par modificar el id_tipo ya que no me deja creo al ser una FOREINGH-->

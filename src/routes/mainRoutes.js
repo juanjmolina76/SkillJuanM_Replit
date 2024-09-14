@@ -57,7 +57,7 @@ router.delete ('/proy/:nombre', isLogged, controladores.eliminar)
 
 router.get ('/modificar/:id',  isLogged, controladores.getModificar)/*estaba comentado: isLogged*/
 
-router.put ('/modificar', /*isLogged,*/ controladores.actualizar)//le agrego el midelware (que estté logueado) para usar express sessions
+router.put ('/modificar', isLogged, controladores.actualizar)//le agrego el midelware (que estté logueado) para usar express sessions
 
 router.get('/proys', controladores.getProys)//NEW
 

@@ -40,7 +40,7 @@ document.querySelector('body').onload = async () => {
                  <td>${registro.img}</td>
                  <td><img src="/img/${registro.img}" width="50"></td>
                  <td>${registro.id_tipo}</td>
-                    <td>
+                    <td >
                     <button><a href="/modificar/${registro.id}">Modificar</a></button><br>
                     
                     <form method="POST" action="/proy/:nombre?_metodo=DELETE" style="display: flex">
