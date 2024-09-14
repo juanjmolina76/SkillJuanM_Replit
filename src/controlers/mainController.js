@@ -69,6 +69,7 @@ module.exports = {
                 productos: registros,
                 tituloDePagina: 'Cards de Proyectos',
                 
+                
             })
            console.log(registros)
         } catch (error){

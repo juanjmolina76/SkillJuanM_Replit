@@ -1,6 +1,7 @@
 document.querySelector('body').onload = async () => {
 	
-	const token = localStorage.getItem('jwt-token')
+	const token = localStorage.getItem('jwt-token');
+    const idRol = localStorage.getItem('idRol');
 
 	const res = await fetch(`http://localhost:8080/proy/digitales`, {//en REPLIT eliminar el local host,
         //dejar solo la ruta`/proy/digitales`
@@ -42,10 +43,10 @@ document.querySelector('body').onload = async () => {
                  <td>${registro.id_tipo}</td>
                     <td >
                     <button><a href="/modificar/${registro.id}">Modificar</a></button><br>
-                    
+                    ${idRol != 2 ? `
                     <form method="POST" action="/proy/:nombre?_metodo=DELETE" style="display: flex">
                     <input type="hidden" name="idEliminar" value="${registro.id}">        
-                    <input type="submit" value="Eliminar"></td>
+                    <input type="submit" value="Eliminar">` : ''}</td>
             </form>
             </tr>
             </body>`;
