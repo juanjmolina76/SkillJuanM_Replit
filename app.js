@@ -36,6 +36,9 @@ app.use('/login', login)//login/login  o /login/registro todo lo que venga con /
 //app.use('/admin', rutasAdmin) // /admin/loquesea /admin/xyz
 app.use('/',  rutas)//('/', auth, rutas) //AUTORIZACION PARA todas LAs RAMAs  // en vez de autenticar una sola ruta en mainRoutes.js //
 
+
+//app.use("/tip", require('./src/routes/mainRoutes.js'))
+
 //app.use('/', auth, rutasAuth)//para que requira el token          //
 //app.use('/admin', rutasAdmin)
 //app.use('/admin', auth, rutasAdmin )

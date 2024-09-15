@@ -1,4 +1,6 @@
 const { conn } = require('../db/dbconnect')
+const { validationResult } = require("express-validator");
+
 
 module.exports = {
 
@@ -98,3 +100,16 @@ module.exports = {
         }
         }
     }
+/*
+   const store = (req, res) => {
+        const result = validationResult(req);
+        console.log(result)
+        res.status(201).json(req.body);
+    };
+
+
+    module.exports = {store,
+
+    };
+
+    */

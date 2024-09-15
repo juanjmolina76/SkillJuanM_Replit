@@ -1,6 +1,12 @@
 const express = require('express')
 const router = express.Router()
-const controladores = require('../controlers/mainController')
+
+//const { body } = require ("express-validator");
+
+const controladores = require('../controlers/mainController');
+
+
+
 //const path = require('path')
 const multer = require('multer')// (1º) LEVANTO el modulo multer que instalé con (npm install multer)(para guardar archivos)
 const auth = require ('./../config/auth')
@@ -62,5 +68,8 @@ router.put ('/modificar', isLogged, controladores.actualizar)//le agrego el mide
 router.get('/proys', controladores.getProys)//NEW
 
 router.get('/detalleProducto/:id', controladores.getDetalleProducto )//NUEVO
+
+//router.post('/tip',/* body("name").notEmpty(), */controladores.store)
+
 
 module.exports = router

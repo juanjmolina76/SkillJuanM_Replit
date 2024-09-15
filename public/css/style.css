@@ -55,6 +55,10 @@ img{
   width: 10rem;
 }
 
+#detalleCard{
+  width:  50rem;
+}
+
 h2:hover {
   width: 250px;
   scale:(1.5);

@@ -35,8 +35,13 @@ const login = async () => {
       body: JSON.stringify({ user, password }), 
     })
     console.log(resp)//imprime en la consola del navegador
-
-    if(resp.status === 404){
+    if(resp.status === 400){
+      const{errors} = await resp.json()
+      let mensajes = ''
+      errors.forEach(error => mensajes += `${error.msg}\n`)
+      alert(`Error en login:\n${mensajes}`)
+    }
+    else if(resp.status === 404){
       alert ("Usuario inválido");
     } else if (resp.status === 401){
       alert ("Password incorrecto")
