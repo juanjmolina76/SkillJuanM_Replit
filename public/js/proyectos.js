@@ -24,7 +24,7 @@ document.querySelector('body').onload = async () => {
                             <th>Nombre</th>
                             <th>Descripcion</th>
                             <th>Precio</th>
-                            <th>Img</th>
+                            <!--th>Img</th-->
                             <th>Img</th>
                             <th>id_tipo</th>
                             <th>Editar</th>
@@ -38,8 +38,8 @@ document.querySelector('body').onload = async () => {
                  <td>${registro.descripcion}</td>
                  <td>${registro.precio}</td>
                  <!--td><img src="/img/${registro.img} width="20"></td-->
-                 <td>${registro.img}</td>
-                 <td><img src="/img/${registro.img}" width="50"></td>
+                 <!--td>${registro.img}</td-->
+                 <td><img src="/img/${registro.img}" width="50"></td> <!--registro.originalname u registro.img-->
                  <td>${registro.id_tipo}</td>
                     <td >
                     <button><a href="/modificar/${registro.id}">Modificar</a></button><br>

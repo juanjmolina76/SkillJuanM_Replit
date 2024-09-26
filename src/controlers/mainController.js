@@ -1,6 +1,7 @@
 const { conn } = require('../db/dbconnect')
 const { validationResult } = require("express-validator");
-
+const path = require("path");
+const sharp = require("sharp");
 
 module.exports = {
 
@@ -19,9 +20,35 @@ module.exports = {
     crearRegistro: async (req, res)=> {
         console.log(req.file)
         try{
+            const result = validationResult(req)
+            console.log(result)
+
+            if(!result.isEmpty()) {
+                return res.status(422).json({ errors: result.array() });
+
+            }    
+                
+
+            if (req.file){
+              sharp (req.file.buffer) 
+              .resize(640)
+              .toFile(
+                path.resolve(__dirname , "../../public/img", req.file.originalname))  
+                .then(()=> {
+                    console.log('Imagen guardada correctamente');
+                })
+                .catch((error)=> {
+                    console.log('Error al guardar la imagen', error);
+                })
+            };
+            console.log(req.file);
+           // res.status(201).json(req.body);
+
             const sql = `INSERT INTO producto (nombre, descripcion, precio, img, id_tipo) VALUES (?,?,?,?,?);`
-            const creado = await conn.query(sql, [req.body.nombre, req.body.descripcion, parseFloat(req.body.precio), req.file.filename, req.body.id_tipo, ]) //req.file.filename
+            const creado = await conn.query(sql, [req.body.nombre, req.body.descripcion, parseFloat(req.body.precio), req.file.originalname, req.body.id_tipo, ]) //req.file.filename ó req.file.originalname
             console.log(creado)
+            console.log(req.file.originalname)
+           
             res.redirect('/proyectosDigitales.html')
         }catch (error){
             throw error

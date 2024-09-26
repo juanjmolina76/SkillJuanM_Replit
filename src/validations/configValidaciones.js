@@ -1,4 +1,4 @@
-const { body } = require ('express-validator')
+const { body } = require ('express-validator')//VIDEO 36 Cierrede cursada (hasta 1:00 hs aprox
 const { conn } = require ('../db/dbconnect')
 
 const login = [
