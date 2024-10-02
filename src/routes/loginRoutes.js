@@ -4,8 +4,9 @@ const loginController = require('../controlers/loginController')//require('./../
 
 const requisitos = require('../validations/configValidaciones')
 const validate = require('../validations/validacion')
+const validateRegistro = require('../validations/validacionRegistro')
 
-router.post('/registro', requisitos.registro, validate, loginController.registro)//validaciones
+router.post('/registro', requisitos.registro, validateRegistro, loginController.registro)//validaciones
 router.post('/login', requisitos.login, validate, loginController.login)//validaciones
 router.get('/logout', loginController.logout)
 router.get('/verificarToken/:token', loginController.verificarToken)

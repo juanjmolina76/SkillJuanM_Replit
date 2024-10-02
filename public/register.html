@@ -8,14 +8,15 @@
   </head>
   <body style='display: block;'>
 	<form action="/login/registro" method="POST" enctype="application/x-www-form-urlencoded"><!--la RAMA es /loguin  por eso va a /login/registro  -->
-    	<label>Usuario: <input type="text" name="user" required></label>
-		<label>Email: <input type="email" name="email"></label>
-    	<label>Contraseña: <input type="text" name="password" required></label>
+    	<label>Usuario: <input class="requerido" type="text" name="user" required></label>
+		<label>Email: <input class="requerido" type="email" name="email"></label>
+    	<label>Contraseña: <input class="requerido"  type="text" name="password" required></label>
 		<label>Repetir Contraseña: <input type="text" name="password2" required></label>
 		
     	<!--input type="hidden" name="id_role" value="2"-->
-    	<button type="submit">Registarme</button>
+    	<button type="submit" onclick="registro()">Registarme</button>
 	</form>
 	<a href="/login.html">Regresar</a>
+	<script type="text/javascript" src="js/registro.js"></script>
 </body>
 </html>

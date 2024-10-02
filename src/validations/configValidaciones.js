@@ -20,8 +20,10 @@ const registro = [
         .custom((value,{req}) => {
             return new Promise(async (resolve, reject)=> {
                 try {
-                    const [usuarioExiste] = await conn.query (`SELECT * FROM usuario WHERE username = '${value}'`)
-                if (usuarioExiste){
+                    const [rows] = await conn.query (`SELECT * FROM usuario WHERE username = ?`, [value]);//const [usuarioExiste]  = await conn.query (`SELECT * FROM usuario WHERE username = '${value}'`)
+                    
+                if (rows.length > 0){ //if (usuarioExiste)
+                    
                     return reject()
                 }else{
                     return resolve()
@@ -31,7 +33,13 @@ const registro = [
                 }
             })
         })
+        
         .withMessage("Usuario ya existe"),
+
+    /*body("email")
+        .isEmail ({
+            ignore_max_length: true})
+        .withMessage("longitud mail aceptada"),*/
 
     body("password")
         .isStrongPassword({

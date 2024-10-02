@@ -22,6 +22,16 @@ const logout = async () => {
 }
 */
 
+/*
+  const idRol = localStorage.getItem('idRol');
+  let submit_button = document.getElementById("submit_button");
+  
+  if (idRol == 2) {
+      submit_button.remove();}
+
+
+*/
+
 
 //solo si es admin (id_rol = 1) puede ver el ABM de Productos
 const idRol = localStorage.getItem('idRol')
