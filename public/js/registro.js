@@ -46,4 +46,3 @@ const registro = async () => {
       //resp.redirected('/proyectosDigitales.html')
     }
 }
-}
