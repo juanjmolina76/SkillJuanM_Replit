@@ -16,7 +16,7 @@ module.exports = {
         //let token // BORRAR ??
         const {user, password} = req.body//extrae el ombre de ususario y la contraseña del cuerpo de la solicitud
         const[[valido]] = await conn.query(`SELECT * FROM usuario WHERE username = ?`, user)
-        console.log(valido)//imprime en la consola despues de "Estoy arriga en el puerto 8080"
+        console.log(valido)//imprime en la consola despues de "Estoy arriba en el puerto 8080"
 
         if (valido === undefined){
             console.log(valido)
@@ -24,7 +24,7 @@ module.exports = {
         	res.status(404).send('Usuario no encontrado')
 		} 
         else if (!(await crypt.compare(password, valido.password))){
-            console.log(valido.password)
+            console.log(valido.password)//imprime el password encriptado aunque el ingresado esté incorrecto
 			res.status(401).send({auth: true, token: null})
 		}
          else { // Error en clase: escribí "expriresIn" en lugar de "expiresIn" y no se genera bien el token
