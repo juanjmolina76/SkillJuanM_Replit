@@ -2,6 +2,7 @@ const express = require(`express`)
 const override = require('method-override')
 const rutas = require('./src/routes/mainRoutes.js')
 const login = require ('./src/routes/loginRoutes.js')
+const cartRoutes =require ('./src/routes/cartRoutes')
 const app = express()//levanto express sessions
 const auth = require('./src/config/auth')//verificar que el usuario tenga AUTORIZACION para entrar a todas las rutas de mi RAMA
 const session = require('express-session')
@@ -28,6 +29,7 @@ app.use(session({//inicializo express sessions y lo configuro
     secret: "S3cr3t_H@sh01",
     resave: false,
     saveUninitialized: false,
+    //cookie: { secure: false }
 })) 
 
 
@@ -36,7 +38,7 @@ app.use('/login', login)//login/login  o /login/registro todo lo que venga con /
 //app.use('/admin', rutasAdmin) // /admin/loquesea /admin/xyz
 app.use('/',  rutas)//('/', auth, rutas) //AUTORIZACION PARA todas LAs RAMAs  // en vez de autenticar una sola ruta en mainRoutes.js //
 
-
+app.use('/cart', cartRoutes)
 //app.use("/tip", require('./src/routes/mainRoutes.js'))
 
 //app.use('/', auth, rutasAuth)//para que requira el token          //
@@ -50,6 +52,8 @@ app.use('/',  rutas)//('/', auth, rutas) //AUTORIZACION PARA todas LAs RAMAs  //
 app.use((req, res, next) => {
     res.status(404).send(`<h1 style="color:red">Recurso no encontrado!</h1>`)
 })
+
+
 
 //escucha lo que el puerto tiene y lo publica en consola
 app.listen (port, () => console.log(`Estoy arriba en el puerto ${port}`))

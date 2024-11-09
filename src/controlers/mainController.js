@@ -59,7 +59,7 @@ module.exports = {
 
     eliminar: async (req, res)=>{
         console.log(req.body.idEliminar);
-        const eliminado = await conn.query(`DELETE FROM producto WHERE id=?`, req.body.idEliminar)
+        const eliminado = await conn.query(`DELETE FROM producto WHERE id=?`, req.body.idEliminar)//borra el value del campo llamado idEliminar (que está escondido hidden)
         console.log(eliminado);
         res.redirect('/proyectosDigitales.html')
     },
@@ -126,6 +126,8 @@ module.exports = {
             conn.releaseConnection();
         }
         }
+
+
     }
 /*
    const store = (req, res) => {

@@ -1,0 +1,21 @@
+<h2>Carrito de compras</h2>
+<% if (cart.length > 0) { %>
+    <ul>
+        <% cart.forEach(item => { %>
+            <li>
+                Producto ID: <%= item.producId %>, Cantidad<%= item.quantity %>
+            <form action="/cart/update/<%= item.productId %>" method="POST" >
+                <input type="number" name="quantity" value="<%= item.quantity %>">
+                <button type="submit">Actualizar</button>
+            </form>
+                <form action="/cart/remove/>%= item.productId %>" method="POST">
+                    <button type="submit">Eliminar</button>
+                </form>
+
+            </li>
+        <% }); %>
+    </ul>
+<% } else { %>
+    <p>Tu carrito está vacío.</p>
+<% } %>
+

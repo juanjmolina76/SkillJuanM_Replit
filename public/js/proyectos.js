@@ -16,7 +16,7 @@ document.querySelector('body').onload = async () => {
         throw Error("Problemas en login")
     }  else{
 
-    const datos = await res.json()
+    const datos = await res.json()//lo obteninedo como respuesta es resultado del pedido asincrono que el controlador hace a la bd, 
     let listaHTML = document.querySelector(`#tabla`)  
     listaHTML.innerHTML = ''
     listaHTML.innerHTML = `<thead>

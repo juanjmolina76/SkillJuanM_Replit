@@ -21,6 +21,10 @@
              <div class=""><img src="/img/<%= producto.img %>" width=""></div>
              <p><%= producto.id_tipo %></p>
              <a href="/detalleProducto/<%=producto.id%>">Leer Más</a>
+             <p>
+             <form action="/cart/add/<%=producto.id%>" method="POST"><button type="submit">Agregar al Carrito</button>
+              </form>
+            </p>
           </div>
         </div>
      <%

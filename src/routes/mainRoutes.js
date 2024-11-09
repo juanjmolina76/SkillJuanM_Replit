@@ -41,7 +41,7 @@ const uploadFile = multer({ storage: multer.memoryStorage() })
 //(3ª)LEVANTO LA CONFIGURACION... Guardo en la variable uploadFile la configuracion de multer
 //falta ahora decir de qué manera ejecuto multer ,,, en cual de las rutas debe entrometerse al recibir el archivo (ENtre cual de las rutas de Routes interviniendo el post (el override))
 
-const isLogged = (req, res, next)=> {//si no hay req userId, redireccioname a login, si hay sesion activa...next (ir a modificar)
+const isLogged = (req, res, next)=> {//si no hay req session userId, redireccioname a login, si hay sesion activa...next (ir a modificar)
     if (!req.session.userId){
         return res.redirect('/login.html')
     }
@@ -110,6 +110,7 @@ router.get('/proys', controladores.getProys)//NEW
 router.get('/detalleProducto/:id', controladores.getDetalleProducto )//NUEVO
 
 //router.post('/tip',/* body("name").notEmpty(), */controladores.store)
+
 
 
 module.exports = router
