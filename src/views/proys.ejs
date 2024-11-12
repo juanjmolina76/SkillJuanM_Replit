@@ -21,10 +21,14 @@
              <div class=""><img src="/img/<%= producto.img %>" width=""></div>
              <p><%= producto.id_tipo %></p>
              <a href="/detalleProducto/<%=producto.id%>">Leer Más</a>
+            
              <p>
-             <form action="/cart/add/<%=producto.id%>" method="POST"><button type="submit">Agregar al Carrito</button>
-              </form>
-            </p>
+               <form action="/cart/add/<%=producto.id%>" method="POST" enctype="multipart/form-data">
+               <label for="quantity">cantidad: </label>
+               <input type="number" min="0" max="100"  id="quantity" name="quantity" value="1" required>
+               <button type="submit">Agregar al Carrito</button>
+               </form>
+              </p>
           </div>
         </div>
      <%

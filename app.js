@@ -30,6 +30,8 @@ app.use(session({//inicializo express sessions y lo configuro
     resave: false,
     saveUninitialized: false,
     //cookie: { secure: false }
+    
+
 })) 
 
 
@@ -38,7 +40,7 @@ app.use('/login', login)//login/login  o /login/registro todo lo que venga con /
 //app.use('/admin', rutasAdmin) // /admin/loquesea /admin/xyz
 app.use('/',  rutas)//('/', auth, rutas) //AUTORIZACION PARA todas LAs RAMAs  // en vez de autenticar una sola ruta en mainRoutes.js //
 
-app.use('/cart', cartRoutes)
+app.use('/', cartRoutes)
 //app.use("/tip", require('./src/routes/mainRoutes.js'))
 
 //app.use('/', auth, rutasAuth)//para que requira el token          //

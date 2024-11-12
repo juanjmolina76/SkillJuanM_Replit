@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-
 //const { body } = require ("express-validator");/*Agrego Express Validator*/ 
 
 const cartController = require('../controlers/cartController');
@@ -13,10 +12,11 @@ const isLogged = (req, res, next)=> {//si no hay req session userId, redireccion
     next()
 }
 //Rutas para el carrito de compras
+
+router.get('/cart', isLogged, cartController.showCart);
 router.post('/cart/add/:productId', isLogged, cartController.addToCart);
-router.get('/', isLogged, cartController.showCart);
-router.post('/checkout', isLogged, cartController.checkout);
 router.post('/update/:productId', isLogged,  cartController.updateCart);
 router.post('/remove/:productId', isLogged, cartController.removeFromCart);
+router.post('/checkout', isLogged, cartController.checkout);
 
 module.exports = router;
