@@ -111,28 +111,48 @@ module.exports = {
     },
 
     //NUEVO
+    
     //getDetalleProducto: async (req, res) => {
         //  getDetalleProducto: async function handleRequest(req, res) {
-            getDetalleProducto: async (req, res) => {
-        try{
-            const idProd = req.params.id
-            console.log(req.params.id)
-            console.log(req.params.idProd)
-            const [registro] = await conn.query(`SELECT p.*, t.id AS tipo
-                                                FROM producto p
-                                                JOIN tipo t ON p.id_tipo = t.id
-                                                WHERE p.id = ${idProd};`);// ;SELECT * from tipo WHERE id = `)
-            res.render('detalleProducto', { producto: registro[0]/*, tipo: registro[1]*/, tituloDePagina: 'Detalle de Proyecto'});
-                //console.log(registro[1])
+
+ //         // CONSULTA query con JOIN:
+
+ //     getDetalleProducto: async (req, res) => {
+ //       try{
+ //           const idProd = req.params.id
+ //           console.log(req.params.id)
+  //          console.log(req.params.idProd)
+  //          const [registro] = await conn.query(`SELECT p.*, t.id AS tipo
+   //                                             FROM producto p
+  //                                              JOIN tipo t ON p.id_tipo = t.id
+  //                                              WHERE p.id = ${idProd};`);
+  //          res.render('detalleProducto', { producto: registro[0], tituloDePagina: 'Detalle de Proyecto'});
+   //             //console.log(registro[0])
+  //      }catch(error){
+   //         throw error;
+   //     } finally{
+   //         conn.releaseConnection();
+ //       }
+ //   },
+
+
+
+        getDetalleProducto: async (req, res) => {
+            try{
+                const idProd = req.params.id
+            const [resProd] =await conn.query(`SELECT  * FROM producto  WHERE  id = ${idProd};`)
+
+            const [resTipo] =await conn.query(`SELECT * FROM tipo WHERE id= ?`,[resProd[0]?.id_tipo])
+
+            res.render('detalleProducto', { producto: resProd[0], tipo: resTipo[0], tituloDePagina: 'Detalle de Proyectos'});
+
         }catch(error){
             throw error;
         } finally{
             conn.releaseConnection();
         }
-        }
-
-
     }
+}
 /*
    const store = (req, res) => {
         const result = validationResult(req);

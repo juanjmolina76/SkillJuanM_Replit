@@ -9,7 +9,7 @@ const pool = mysql.createPool ({      // PARA TRABAJAR EN MI COMPUTADORA :
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0,
-    multipleStatements: true
+    //multipleStatements: true //para pedidos query multiples 
 })
 
 module.exports = {

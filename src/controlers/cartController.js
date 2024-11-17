@@ -63,6 +63,7 @@ addToCart: async (req, res) => {
 showCart: async (req, res) => {
         const cart = req.session.cart || [];
         console.log(cart);
+        console.log("usuarioSession: ",req.session.userId)
 
        /* const detailedCart = await Promise.all(
             cart.map(async (item) => {
@@ -93,7 +94,7 @@ showCart: async (req, res) => {
 
 
 // Función para confirmar compra y guardar en la base de datos
-checkout: async (req, res) => {
+checkOUt: async (req, res) => {
     const cart = req.session.cart;
 
 if (!cart || cart.length === 0) {
@@ -104,16 +105,20 @@ try {
         await connection.beginTransaction();
 
                      // Guardar la orden principal en `orders`
-                     const [result] = await connection.query(
+                     const [result] = await conn.query(
                         'INSERT INTO orders (userId, date) VALUES (?, ?)',
                         [req.session.userId, new Date()]
                     );
                     const orderId = result.insertId;// obtengo el ID de la orden recien creada
+                    console.log(orderId);
 
+
+
+                    
                     // Guardar cada producto en `order_items`
                 const orderItemsPromises = cart.map(item => {
                     return connection.query(
-                        'INSERT INTO order_items (orderId, productId, quantity, price) VALUES (?, ?, ?, ?)',
+                        'INSERT INTO order_items (orderId, productId, quantity, price) VALUES (?, ?, ?, ? )',
                         [orderId, item.productId, item.quantity, item.price]
                     );
                 });
@@ -121,16 +126,48 @@ try {
                 await connection.commit();
             });
 
-            req.session.cart = []; // Limpiar el carrito después de la compra
+            //req.session.cart = []; // Limpiar el carrito después de la compra
             res.redirect('/order-confirmation');
 
 } catch (error) {
     console.error('Error al guardar el pedido: ', error);
     res.status(500).send('Hubo un error al procesar tu pedido');
 }
-
-
 },
+
+// OTRA version de chceckout
+checkout :async (req, res) => {
+    const cart = req.session.cart;
+
+    if (!cart || cart.length === 0) {
+        return res.redirect('/cart');
+    }
+    try {
+        
+        /*const [sqlOrder] = `INSERT INTO orders (user_id, date) VALUES (?,?)`
+        const creaOrder = await conn.query( sqlOrder, [req.session.userId, new Date()])
+        */
+        const [sqlOrder] = await conn.query(`INSERT INTO orders (user_id, date) VALUES (?,?)`
+                                            , [req.session.userId, new Date()]);
+
+        const orderId = sqlOrder.insertId;// obtengo el ID de la orden recien creada
+                    console.log(orderId);
+                // Guardar cada producto en `order_items` 
+        const orderItemsPromises = cart.map(item => {
+            return conn.query(`INSERT INTO cart_items (cart_id, product_id, quantity, price, added_at) VALUES (?,?,?,?,?);`),
+            [orderId, item.productId, item.quantity, parseFloat(30.5),  new Date()]
+        
+            });
+
+        
+    }catch (error){
+        throw error
+    }finally{
+        conn.releaseConnection()
+    }  
+},
+
+
 // Función para actualizar cantidad de producto en el carrito
 updateCart: async (req,res) => {
     const { productId } =req.params;
