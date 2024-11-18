@@ -154,17 +154,21 @@ checkout :async (req, res) => {
                     console.log(orderId);
                 // Guardar cada producto en `order_items` 
         const orderItemsPromises = cart.map(item => {
-            return conn.query(`INSERT INTO cart_items (cart_id, product_id, quantity, price, added_at) VALUES (?,?,?,?,?);`),
-            [orderId, item.productId, item.quantity, parseFloat(30.5),  new Date()]
-        
+            const precio = 30;
+            item.price = precio;
+            return conn.query('INSERT INTO cart_items (cart_id, product_id, quantity, price, added_at) VALUES (?,?,?,?,?);'),
+            [orderId, item.productId, item.quantity, item.price,  new Date()]
             });
-
-        
+            await Promise.all(orderItemsPromises);
+            //await conn.commit();
+        req.session.cart = []; // Limpiar el carrito después de la compra
+        res.redirect('/order-confirmation');
     }catch (error){
         throw error
     }finally{
         conn.releaseConnection()
     }  
+    
 },
 
 
