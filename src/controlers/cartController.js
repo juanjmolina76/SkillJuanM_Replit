@@ -219,6 +219,39 @@ removeFromCart: async (req,res) =>{
     }
     res.render('cart', { cart });
     //res.redirect('/cart');
+},
+
+
+
+getMiCart: async (req, res) => {
+    try{
+    console.log(req.session.userId)
+    const [ miCart ] = await conn.query('SELECT * FROM cart_items WHERE user_id = ?]',[req.session.userId])
+    res.json(retistros)
+    }catch (error){
+    throw error
+    }finally {
+        conn.releaseConnection()
+    }
+},
+//otra version de getmiCart
+getmiCart: async (req, res) => {
+    const [ cartId ] = await conn.query (
+        'SELECT max (id) FROM cart WHERE user_id =?',[req.session.userId])
+        console.log(cartId)
+     try{
+        const  registros  = await conn.query('SELECT * FROM cart_items WHERE cart_id=?',[cartId])
+        console.log(registros)
+     }  catch (error) {
+        console.log(error)
+        console.log(registros)
+     } finally {
+        conn.releaseConnection();
+     }
+    
+}
 }
 
-}
+
+
+

@@ -1,0 +1,30 @@
+<%- include('partials/header2')%>
+<body>
+    <section>
+        <h2>mi carrito</h2>
+        <br>
+
+    </section>
+    <section>
+        <h2 class="grad">DESARROLLOS DIGITALES cards</h2>
+        <br>
+        <h1><%=tituloDePagina%></h1>
+        <!--p>%productos%></p-->
+
+
+            <div class="container__cards" id="card">        
+     <% productos.forEach(producto => { %>
+        <div>
+          <div class="cover">
+            <h2><%= producto.cart_id %></h2>
+             <p><%= producto.user_id %></p>
+             <p><%= producto. %></p>
+            
+          </div>
+        </div>
+     <%
+      })
+     %>
+      </div>
+    </section>
+</body>

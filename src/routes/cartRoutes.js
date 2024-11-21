@@ -18,5 +18,5 @@ router.post('/cart/add/:productId', isLogged, cartController.addToCart);
 router.post('/update/:productId', isLogged,  cartController.updateCart);
 router.post('/remove/:productId', isLogged, cartController.removeFromCart);
 router.post('/checkout', isLogged, cartController.checkout);
-
+router.get('/miCart', isLogged, cartController.getmiCart);
 module.exports = router;
