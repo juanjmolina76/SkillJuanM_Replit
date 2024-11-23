@@ -159,6 +159,7 @@ checkout: async (req, res) => {
         // Obtener precios de los productos
         const pricesPromises = cart.map(item => {
             return conn.query('SELECT precio FROM producto WHERE id = ?', [item.productId])
+
                 .then(([rows]) => ({
                     productId: item.productId,
                     quantity: item.quantity,
@@ -236,20 +237,42 @@ getMiCart: async (req, res) => {
 },
 //otra version de getmiCart
 getmiCart: async (req, res) => {
-    const [ cartId ] = await conn.query (
-        'SELECT max (id) FROM cart WHERE user_id =?',[req.session.userId])
-        console.log(cartId)
-     try{
-        const  registros  = await conn.query('SELECT * FROM cart_items WHERE cart_id=?',[cartId])
-        console.log(registros)
+    try{
+    const  [[cartRow]]  = await conn.query (
+        'SELECT max(id) as cartId FROM cart WHERE user_id =?',[req.session.userId])
+        
+     
+        const cartId = cartRow.cartId; //Extraigo el `cartId` directamente
+        console.log('último cartId:', cartId)
+
+        if (!cartId) {
+            return res.status(404).send('No hay carritos para este usuario');
+        }
+
+        const  [registros ] = await conn.query('SELECT * FROM cart_items WHERE cart_id=?',[cartId]);
+
+        console.log('Registros del carrito:', registros);
+
+            totalGeneral = 0;
+            registros.forEach(item =>{
+                item.totalPorItem = (item.price * item.quantity);
+                totalGeneral += item.totalPorItem;
+                
+            }) 
+
+        console.log('Total General carrito: ',totalGeneral);
+
+        res.render('itsMiCart', { registros, totalGeneral }); // renderizo la vista itsMiCart con los registros
+
      }  catch (error) {
-        console.log(error)
-        console.log(registros)
-     } finally {
-        conn.releaseConnection();
-     }
-    
+        console.log('Error obteniendo datos del carrito:',error)
+        res.status(500).send('Hubo un error obteniendo los datos del carrito...')
+     }     
+},
+orderConfirmation: (req, res) => {
+    res.render('order-confirmation');
 }
+
 }
 
 
