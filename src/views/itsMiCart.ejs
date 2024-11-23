@@ -29,13 +29,15 @@
                     </tr>
                     
                 <% }) %>
-                <p>Total: $<%= totalGeneral.toFixed(2)  %></p>
+                
             <% } else { %>
                 <tr>
                     <td colspan="4">El carrito está vacío.</td>
                 </tr>
             <% } %>
         </tbody>
+        
     </table>
+    <p class="total">Total: $<%= totalGeneral.toFixed(2)  %></p>
 </body>
 <!--/html-->
