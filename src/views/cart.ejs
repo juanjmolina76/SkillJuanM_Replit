@@ -9,11 +9,11 @@
         <% cart.forEach(item => { %>
             <li>
                 Id: <%=item.productId%> Producto: <%= item.nombre %>, Precio: <%= item.precio %>, Cantidad: <%=item.quantity %>
-                <form action="/cart/update/<%= item.productId %>" method="POST" >
+                <form action="/update/<%= item.productId %>" method="POST" >
                     <input type="number" name="quantity" value="<%= item.quantity %>">
                     <button type="submit">Actualizar</button>
                 </form>
-                <form action="/cart/remove/<%= item.productId %>" method="POST">
+                <form action="/remove/<%= item.productId %>" method="POST">
                     <button type="submit">Eliminar</button>
                 </form>
             </li>

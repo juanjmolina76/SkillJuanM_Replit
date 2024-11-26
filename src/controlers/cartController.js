@@ -64,7 +64,6 @@ showCart: async (req, res) => {
         const cart = req.session.cart || [];
         console.log(cart);
         console.log("usuarioSession: ",req.session.userId)
-
        /* const detailedCart = await Promise.all(
             cart.map(async (item) => {
                 const productInfo = await getProductById(item,productId);
@@ -79,8 +78,6 @@ showCart: async (req, res) => {
                 };        
             })
 );*/
-
-
         // Mapea los detalles del carrito (directamente desde la sesión)
         const detailedCart = cart.map(item => ({
             productId: item.productId,
@@ -202,24 +199,39 @@ updateCart: async (req,res) => {
     if (req.session.cart){
         const cart = req.session.cart;
         const product = cart.find(item => item.preductId === productId);
-        if (product) {
+        
+        if (product) {//Actualizo la cantidad
             product.quantity = quantity;
+            console.log(`la cantidad del prod con ID ${productId} actualizada a ${quantity}`);
+        } else {
+            console.log(`producto con ID ${productId} no encontrado en el carrito`);
         }
-    }
-   // res.render('/cart')
-    res.redirect('/cart', { cart });
+     } else {
+            console.log(`no hay carrito en la session`);
+        }
+    
+    //res.render('/cart')
+    //res.redirect('/cart', { cart });
+    res.redirect('/cart');
 },
 // Función para eliminar producto del carrito
 removeFromCart: async (req,res) =>{
+    const cart = req.session.cart || [];
     const { productId } = req.params;
     //const [eliminado ] = req.params;
-
-    if (req.session.cart) {
+    //const cart = req.session.cart;
+    if (req.session.cart) {//filtra los productos para eliminar el indicado
         req.session.cart = req.session.cart.filter(item => item.productId !== productId);
         console.log(`Producto con ID ${productId} eliminado del carrito.`)
+        
+        }   else {
+        console.log("No hay carrito en la sesion.")
     }
-    res.render('cart', { cart });
-    //res.redirect('/cart');
+   
+//res.render('cart', { cart:detailedCart }); //'cart'
+//show cart ????
+    //res.render('cart', { cart });
+    res.redirect('/cart');
 },
 
 
