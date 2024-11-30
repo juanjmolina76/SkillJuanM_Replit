@@ -29,10 +29,10 @@ addToCart: async (req, res) => {
         
     const productId  = parseInt(req.params.productId, 10);
     const quantity = parseInt(req.body.quantity, 10) || 1;
-    const precio = parseFloat(req.body.precio)
+    //const precio = parseFloat(req.body.precio)
         console.log("Product ID:", productId ); //verificar qu el ID del producto se recibe crrectamene
         console.log("Quantity: ", quantity); //verificar la cantidad
-        console.log("Precio: ", precio);
+        //console.log("Precio: ", precio);
 
     if (!req.session.cart) { 
         req.session.cart = [];
@@ -63,7 +63,7 @@ addToCart: async (req, res) => {
 showCart: async (req, res) => {
         const cart = req.session.cart || [];
         console.log(cart);
-        console.log("usuarioSession: ",req.session.userId)
+        console.log("usuario Session: ",req.session.userId)
        /* const detailedCart = await Promise.all(
             cart.map(async (item) => {
                 const productInfo = await getProductById(item,productId);
@@ -190,6 +190,15 @@ checkout: async (req, res) => {
 },
 
 
+modificarCart: async (req, res) => {
+   
+
+},
+
+
+
+
+
 
 // Función para actualizar cantidad de producto en el carrito
 updateCart: async (req,res) => {
@@ -198,10 +207,11 @@ updateCart: async (req,res) => {
 
     if (req.session.cart){
         const cart = req.session.cart;
-        const product = cart.find(item => item.preductId === productId);
+        const product = cart.find(item => item.productId === productId);
         
         if (product) {//Actualizo la cantidad
             product.quantity = quantity;
+
             console.log(`la cantidad del prod con ID ${productId} actualizada a ${quantity}`);
         } else {
             console.log(`producto con ID ${productId} no encontrado en el carrito`);
@@ -214,6 +224,30 @@ updateCart: async (req,res) => {
     //res.redirect('/cart', { cart });
     res.redirect('/cart');
 },
+
+ // OPCION PARA Actualizar la cantidad de un producto en el carrito
+ UpdateCart: async (req, res) => {
+    const { productId } = req.params;
+    const quantity = parseInt(req.body.quantity, 10);
+    const cart = req.session.cart || [];
+
+    const productIndex = cart.findIndex(item => item.productId === productId);
+    if (productIndex !== -1 && quantity > 0) {
+        cart[productIndex].quantity = quantity;
+    }
+    req.session.cart = cart;
+    res.redirect('/cart');
+},
+
+//OPCON PARA Eliminar un producto del carrito
+    RemoveFromCart: async (req, res) => {
+        const { productId } = req.params;
+        const cart = req.session.cart || [];
+        req.session.cart = cart.filter(item => item.productId !== productId);
+        res.redirect('/cart');
+    },
+
+
 // Función para eliminar producto del carrito
 removeFromCart: async (req,res) =>{
     const cart = req.session.cart || [];
@@ -254,7 +288,7 @@ getmiCart: async (req, res) => {
         'SELECT max(id) as cartId FROM cart WHERE user_id =?',[req.session.userId])
         
      
-        const cartId = cartRow.cartId; //Extraigo el `cartId` directamente
+        const cartId = cartRow.cartId ; //Extraigo el `cartId` directamente ó (const cartId = cartRow.cartId -2)le resto 1 o 2 al ultimo para ver anteriores
         console.log('último cartId:', cartId)
 
         if (!cartId) {
