@@ -317,13 +317,25 @@ getmiCart: async (req, res) => {
 },
 orderConfirmation: async (req, res) => {
 
-const cart_id = req.body.cart_id;
+//const cart_id = req.body.cart_id;
 const user_id = req.session.userId;
-console.log(cart_id);
+//console.log(cart_id);
 try{
+    const  [[cartRow]]  = await conn.query (
+        'SELECT max(id) as cartId FROM cart WHERE user_id =?',[req.session.userId])
+        
+     
+        const cartId = cartRow.cartId ; //Extraigo el `cartId` directamente ó (const cartId = cartRow.cartId -2)le resto 1 o 2 al ultimo para ver anteriores
+        console.log('último cartId:', cartId)
+
+        if (!cartId) {
+            return res.status(404).send('No hay carritos para este usuario');
+        }
+
+
     const [ sqlOrder ] = await conn.query(
-        `INSERT INTO order (user_id, cartItem_id, date) VALUES (?,?,?)`,
-        [user_id, cart_id, new Date() ]
+        `INSERT INTO orders (user_id, cartItem_id, date) VALUES (?,?,?)`,
+        [user_id, cartId, new Date() ]
 
         
     );
@@ -332,7 +344,7 @@ try{
     console.error("error al confirmar la orden definitiva:", error);
     res.status(500).send("Hubo un error al procesar la confirmacion de la orden.");
 }finally {
-  //  res.redirect('order-confirmation');
+    res.render('order-confirmation');
 }
 
 
