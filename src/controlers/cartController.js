@@ -317,7 +317,7 @@ getmiCart: async (req, res) => {
 },
 orderConfirmation: async (req, res) => {
 
-const cart_id = req.body.car_id;
+const cart_id = req.body.cart_id;
 const user_id = req.session.userId;
 console.log(cart_id);
 try{
