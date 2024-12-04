@@ -315,8 +315,29 @@ getmiCart: async (req, res) => {
         res.status(500).send('Hubo un error obteniendo los datos del carrito...')
      }     
 },
-orderConfirmation: (req, res) => {
-    res.render('order-confirmation');
+orderConfirmation: async (req, res) => {
+
+const cart_id = req.body.car_id;
+const user_id = req.session.userId;
+console.log(cart_id);
+try{
+    const [ sqlOrder ] = await conn.query(
+        `INSERT INTO order (user_id, cartItem_id, date) VALUES (?,?,?)`,
+        [user_id, cart_id, new Date() ]
+
+        
+    );
+    console.log(sqlOrder)
+} catch (error) {
+    console.error("error al confirmar la orden definitiva:", error);
+    res.status(500).send("Hubo un error al procesar la confirmacion de la orden.");
+}finally {
+  //  res.redirect('order-confirmation');
+}
+
+
+
+  //  res.render('order-confirmation');
 }
 
 }
