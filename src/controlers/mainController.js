@@ -90,10 +90,15 @@ module.exports = {
     //NEW
     getProys: async (req, res) => {
         try{
-            const [ registros] = await conn.query(`SELECT * FROM producto`)
+            const [ registros] = await conn.query(`SELECT p.*, s.CantEXistente AS Stock
+                                                FROM producto p JOIN stock s ON p.id = s.id_prod;`)
+  // //SELECT * FROM producto
             //res.json(registros)
-            
-            
+            //const [ ProdStock ] = await conn.query('SELECT p.*, s.CantEXistente AS Stock
+   //                                             FROM producto p
+  //                                              JOIN stock s ON p.id = s.id_prod
+  //                                              WHERE p.id = ${idProd};')
+            //hacer un inner join entre producto y stock 
             res.render('proys',{
                 productos: registros,
                 tituloDePagina: 'Cards de Proyectos',
