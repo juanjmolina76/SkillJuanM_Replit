@@ -180,72 +180,16 @@ showCart: async (req, res) => {
     //res.render('cart', { cart });
 },
 
-checkout: async (req, res) => {
-    try {
-        console.log("Body recibido en el servidor:", req.body);
-        console.log("usuarioSession: ",req.session.userId);
-        if (!req.body.cartData) {
-            console.error("cartData no recibido en el request");
-            return res.status(400).json({ error: "No se recibieron datos del carrito." });
-        }
-
-        let cart = JSON.parse(req.body.cartData);
-        console.log("Carrito recibido:", cart);
-
-        if (!Array.isArray(cart) || cart.length === 0) {
-            return res.status(400).json({ error: "El carrito está vacío." });
-        }
-
-//Guardar el carrito en la tabla `cart`
-const [cartResult] = await conn.query(
-    "INSERT INTO cart (user_id, status) VALUES (?, 'active')",
-    [req.session.userId]
-);
-const cartId = cartResult.insertId; // Obtiene el ID del carrito recién creado
-
-console.log("Carrito guardado con ID:", cartId);
-const CartData = cart; 
-//Insertar los productos en `item_cart`
-const itemQueries = CartData.map(item => {
-    return conn.query(
-        "INSERT INTO cart_items (cart_id, product_id, quantity, price, added_at) VALUES (?, ?, ?, ?,?)",
-        [cartId, item.productId, item.quantity, item.price, new Date()]
-    );
-});
-
-await Promise.all(itemQueries); // Ejecutar todas las consultas en paralelo
-
-console.log("Productos guardados en item_cart.");
-
-        res.json({ message: "Checkout procesado correctamente." });
-    } catch (error) {
-        console.error("Error en checkout:", error);
-        res.status(500).json({ error: "Hubo un error al procesar tu pedido." });
-    }
-},
-
-
-
-
-/*
 // Función para confirmar compra y guardar en la base de datos
 checkout: async (req, res) => {
-   // const cart = req.session.cart;
-  // let cart;
-    try {
-        console.log("Body recibido en el servidor:", req.body);
+    const cart = req.session.cart;
 
-        const cartData = JSON.parse(req.body.cartData); // Obtener datos del carrito enviados desde el frontend // cartData
-        if (!cartData || cartData.length === 0) {
-            return res.redirect('/cart');
-        }
-/*
+
     if (!cart || cart.length === 0) {
         return res.redirect('/cart');
     }
-        
-   */
- /*
+    else{
+    try {
         // Crear la orden en la tabla `cart`
         const [sqlOrder] = await conn.query(
             `INSERT INTO cart (user_id, date, status) VALUES (?, ?, ?)`,
@@ -254,8 +198,7 @@ checkout: async (req, res) => {
 
         const orderId = sqlOrder.insertId; // Obtén el ID de la orden recién creada
         console.log("Order ID:", orderId);
-            */
-/*
+
         // Obtener precios de los productos
         const pricesPromises = cart.map(item => {
             return conn.query('SELECT precio FROM producto WHERE id = ?', [item.productId])
@@ -266,15 +209,13 @@ checkout: async (req, res) => {
                     price: rows[0]?.precio || 0 // Usar precio 0 si no se encuentra el producto
                 }));
         });
-*/
-/*
+
         // Esperar a que se resuelvan todas las promesas
         const itemsWithPrices = await Promise.all(pricesPromises);
         console.log("Items con precios:", itemsWithPrices);
-*/
-/*
+
         // Insertar productos en `cart_items`
-        const orderItemsPromises = cartData.map(item => {// =itemsWithPrices.map(item => {
+        const orderItemsPromises = itemsWithPrices.map(item => {
             return conn.query(
                 'INSERT INTO cart_items (cart_id, product_id, quantity, price, added_at) VALUES (?, ?, ?, ?, ?)',
                 [orderId, item.productId, item.quantity, item.price, new Date()]
@@ -292,9 +233,8 @@ checkout: async (req, res) => {
     } finally {
         conn.releaseConnection();
     }
+}
 },
-*/
-
 
 // Función para eliminar producto del carrito  ****** NO FUNCIONA  *******
 removeFromCart: async (req,res) =>{

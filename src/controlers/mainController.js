@@ -105,7 +105,7 @@ module.exports = {
                 
                 
             })
-           console.log(registros)
+           //console.log(registros)
         } catch (error){
             throw error
         } finally {

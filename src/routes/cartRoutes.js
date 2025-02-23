@@ -15,8 +15,7 @@ const isLogged = (req, res, next)=> {//si no hay req session userId, redireccion
 
 router.get('/cart', isLogged, cartController.showCart);
 router.post('/cart/add/:productId', isLogged, cartController.addToCart);
-router.post('/update/:productId', isLogged,  cartController.updateCart);
-router.post('/remove/:productId', isLogged, cartController.removeFromCart);
+router.post('/remove/:productId', isLogged, cartController.removeFromCart);//agrego /cart
 router.post('/checkout', isLogged, cartController.checkout);
 router.post('/order-confirmation', isLogged, cartController.orderConfirmation);
 router.get('/miCart', isLogged, cartController.getmiCart);

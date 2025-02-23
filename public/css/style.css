@@ -41,7 +41,7 @@ li b {
 }
 
 h2 {
-  text-font: lucida;
+  text-family: lucida;
   font-size: 18;
   text-color: #2ffa78;
   border-bottom: 1px solid #2f5a78;
@@ -155,7 +155,8 @@ ul {
 header,
 footer {
   background-color: #eeeeee;
-  padding-bottom: 2px padding-top: 2px;
+  padding-bottom: 2px; 
+  padding-top: 2px;
 }
 
 h2::first-letter {
@@ -166,7 +167,7 @@ h2::first-letter {
 /*FORAMATO DE TABLAS: */
 
 table {
- border-collapse: collapse;
+  border-collapse: collapse;
   width: 100%;
 }
 
@@ -224,10 +225,15 @@ button {
   color: white;
   width: 100%;
 }
-
+/*
 input[type='button']:hover {
   background-color: gray;
   width: 100%;
+}
+*/
+
+button:hover {
+  background-color: #aa71a8;
 }
 
 .total {

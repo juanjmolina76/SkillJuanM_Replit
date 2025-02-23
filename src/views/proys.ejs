@@ -15,18 +15,19 @@
         <div>
           <div class="cover">
             <h2><%= producto.nombre %></h2>
-             <p><%= producto.descripcion %></p>
-             <p><%= producto.precio %></p>
+            <p>id: <%= producto.id%></p>
+             <p>Descripcion: <%= producto.descripcion %></p>
+             <p>Precio: $<%= producto.precio %></p>
              <p><%= producto.img %></p>
              <div class=""><img src="/img/<%= producto.img %>" width=""></div>
-             <p><%= producto.id_tipo %></p>
-             <p><%= producto.Stock %></p>
+             <p>id_tipo: <%= producto.id_tipo %></p>
+             <p>Stock: <%= producto.Stock %></p>
              <a href="/detalleProducto/<%=producto.id%>">Leer Más</a>
             
              <p>
                <form action="/cart/add/<%=producto.id%>" method="POST" enctype="multipart/form-data">
-               <label for="quantity">cantidad: </label>
-               <input type="number" min="0" max="100"  id="quantity" name="quantity" value="1" required>
+               <!--label for="quantity">cantidad: </label>
+               <input type="number" min="1" max="< %= producto.Stock %>"  id="quantity" name="quantity" value="1" required-->
                <button type="submit">Agregar al Carrito</button>
                </form>
               </p>

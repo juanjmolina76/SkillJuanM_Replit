@@ -1,36 +1,130 @@
-<%- include('partials/header2')%>
+
+<%- include('partials/header2') %>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mi Carrito</title>
+</head>
 <body>
-    <section>
-       <h2 class="grad">carrito de compras</h2>
-       <br>
-         
-<% if (cart.length > 0) { %>
-    <ul>
-        <% cart.forEach(item => { %>
-            <li>
-                Id: <%=item.productId%> Producto: <%= item.nombre %>, Precio: <%= item.precio %>, Cantidad: <%=item.quantity %>
-                <form action="/update/<%= item.productId %>" method="POST" >
-                    <input type="number" name="quantity" value="<%= item.quantity %>">
-                    <button type="submit">Actualizar</button>
-                </form>
-                <form action="/remove/<%= item.productId %>" method="POST">
-                    <button type="submit">Eliminar</button>
-                </form>
-            </li>
-           
-        <% }); %>
-    </ul>
+    <h1>Mi Carrito</h1>
+    <% if (cart.length > 0) { %>
+    <table>
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Subtotal</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="cart-body">
+            <% cart.forEach(item => { %>
+                <tr data-id="<%= item.productId %>">
+                    <td><%= item.nombre %></td>
+                    <td>
+                        <button class="decrement">-</button>
+                        <span class="quantity">1<!--%= item.quantity %--></span>
+                        <button class="increment">+</button>
+                    </td>
+                    <td>$<%= item.precio %></td>
+                    <td class="subtotal">$<!--%= (item.precio * item.quantity).toFixed(2) %--></td>
+                    <td><button class="remove">Eliminar</button></td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    
+    <p class="total">Total: $<span id="total-general">0.00</span></p>
     <p>
-        <form action="/checkout" method="POST" enctype="multipart/form-data">
+        <form id="checkout-form" action="/checkout" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="cartData" id="cartData">
             <button type="submit" >Confirmar orden</button>
             <a href="/cart">ver cart</a>
         </form>
       </p>
-<% } else { %>
-    <p>Tu carrito está vacío.</p>
-<% } %>
-</section>
-        
-</body>
+      <% } else { %>
+        <p>Tu carrito está vacío.</p>
+    <% } %>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const updateTotal = () => {
+                let total = 0;
+                document.querySelectorAll("#cart-body tr").forEach(row => {
+                    const quantity = parseInt(row.querySelector(".quantity").textContent);
+                    const price = parseFloat(row.querySelector("td:nth-child(3)").textContent.replace("$", ""));
+                    const subtotal = price * quantity;
+                    row.querySelector(".subtotal").textContent = `$${subtotal.toFixed(2)}`;
+                    total += subtotal;
+                });
+                document.getElementById("total-general").textContent = total.toFixed(2);
 
-<%- include('partials/footer')%>
+            };
+
+            document.querySelectorAll(".increment").forEach(btn => {
+                btn.addEventListener("click", (e) => {
+                    let row = e.target.closest("tr");
+                    let quantityElement = row.querySelector(".quantity");
+                    quantityElement.textContent = parseInt(quantityElement.textContent) + 1;
+                    updateTotal();
+                });
+            });
+
+            document.querySelectorAll(".decrement").forEach(btn => {
+                btn.addEventListener("click", (e) => {
+                    let row = e.target.closest("tr");
+                    let quantityElement = row.querySelector(".quantity");
+                    let newQuantity = parseInt(quantityElement.textContent) - 1;
+                    if (newQuantity > 0) {
+                        quantityElement.textContent = newQuantity;
+                        updateTotal();
+                    }
+                });
+            });
+
+            document.querySelectorAll(".remove").forEach(btn => {
+                btn.addEventListener("click", (e) => {
+                    let row = e.target.closest("tr");
+                    row.remove();
+                    updateTotal();
+                });
+            });
+
+            updateTotal(); 
+
+
+            // Capturar los datos del carrito antes de hacer el checkout
+        document.getElementById("checkout-form").addEventListener("submit", (e) => {
+            e.preventDefault(); // Evita el envio automatico del formulario
+            let cartItems = []; //cartData 
+            document.querySelectorAll("#cart-body tr").forEach(row => {
+                let productId = row.getAttribute("data-id");
+                let quantity = parseInt(row.querySelector(".quantity").textContent);
+                let price = parseFloat(row.querySelector("td:nth-child(3)").textContent.replace("$", ""));
+
+                cartItems.push({ productId, quantity, price }); //cartData 
+            });
+            
+            let cartData = JSON.stringify(cartItems);
+        console.log("CartData antes de enviar:", cartData); // ✅ Verifica en la consola
+        fetch("/checkout", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ cartData })
+        })
+        .then(response => response.json())
+        .then(data => console.log("Respuesta del servidor:", data))
+        .catch(error => console.error("Error al enviar:", error));
+
+
+
+/*
+            document.getElementById("cartData").value = JSON.stringify(cartItems);
+            e.target.submit();
+            */
+        });
+
+        });
+    </script>
+    <a href="/proys">Volver a porys</a>
+</body>

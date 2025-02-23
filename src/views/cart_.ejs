@@ -1,0 +1,86 @@
+<%- include('partials/header2')%>
+<!---->
+<body>
+    <section>
+       <h2 class="grad">carrito de compras</h2>
+       <br>
+         
+<% if (cart.length > 0) { %>
+    <ul>
+        <% cart.forEach(item => { %>
+            <li>
+                Id: <%=item.productId%>  Cantidad: <%=item.quantity %> 
+                <div>
+                    <button id="decrementar">-</button>
+                    <input type="number" id="cantidad" value="1" min="1" style="width: 50px; text-align: center;">
+                    <button id="incrementar">+</button>
+                </div>
+                <form action="/remove/<%= item.productId %>" method="POST">
+                    <button type="submit">Eliminar</button>
+                </form>
+            </li>
+           
+        <% }); %>
+    </ul>
+ 
+    <p>
+        <strong>Total: </strong> 
+        <b>
+        <!--%= cart.item => total + (item.precio * item.quantity) %-->
+        </b>
+    </p>
+    <p>
+        <form action="/checkout" method="POST" enctype="multipart/form-data">
+            <button type="submit" >Confirmar orden</button>
+            <a href="/cart">ver cart</a>
+        </form>
+      </p>
+      <div id="Quant_Control"><!--EN VUE (solo el titulo) desde public/js/vue.js-->
+      <p>
+        <!--h2>{{titulo}}</h2-->
+      </p>
+    </div-->
+<% } else { %>
+    <p>Tu carrito está vacío.</p>
+<% } %>
+<!--DESDE ACÁ AGREGO ESTE FOR EACH:-->
+<div>
+    <ul>
+        <% cart.forEach(item => { %>
+            <li> Precio: <%= item.precio%>
+    </ul>
+    <% }); %></li>
+</div>
+<!-- HASTA ACÁ -->
+ <br>
+<div>
+    <form action="" method="" enctype="">
+        <input type="cantidad" id="cantidad" value="1">
+    <button type="ingrementar" id="incrementar">+</button>
+    <button type="decrementar" id="decrementar">-</button>
+    </form>
+</div>
+</section>
+<!--script src="https://unpkg.com/vue@3"></script--><!--agregado para VUE (ver nota arriba)-->   
+<!--script src="js/vue.js"> </script-->
+<script>
+    const cantidadInput = document.getElementById('cantidad');
+    const incrementarBtn = document.getElementById('incrementar');
+    const decrementarBtn = document.getElementById('decrementar');
+
+    incrementarBtn.addEventListener('click', () => {
+        cantidadInput.value = parseInt(cantidadInput.value) + 1;
+        console.log(cantidadInput);
+    });
+
+    decrementarBtn.addEventListener('click', () => {
+        if (cantidadInput.value > 1) {
+            cantidadInput.value = parseInt(cantidadInput.value) - 1;
+        }
+    });
+</script>
+<a href="/proys">Volver a porys</a>
+</body>
+
+<%- include('partials/footer')%>
+
