@@ -9,13 +9,15 @@ WORKDIR /home/app
 # Copia el package.json y package-lock.json primero (mejora el cacheo de capas)
 COPY package*.json ./
 
+
+# CREA DIRECOTRIO DE TRABAJO
+COPY . . 
+
 # Instala sharp correctamente con sus dependencias en Linux
 RUN apt-get update && apt-get install -y \
     libvips-dev \
  && npm install --include=optional
 
-# CREA DIRECOTRIO DE TRABAJO
-COPY . . 
 
 # expone el puerto que usa la app
 EXPOSE 3000
