@@ -14,10 +14,7 @@ COPY package*.json ./
 COPY . . 
 
 # Instala sharp correctamente con sus dependencias en Linux
-RUN apt-get update && apt-get install -y \
-    libvips-dev \
- && npm install --include=optional
-
+RUN apt-get update && apt-get install -y libvips-dev npm install --include=optional
 
 # expone el puerto que usa la app
 EXPOSE 3000
