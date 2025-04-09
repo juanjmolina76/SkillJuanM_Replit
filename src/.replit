@@ -1,0 +1,9 @@
+run = "npm start"
+language = "nodejs"
+entrypoint = "app.js"
+
+[packager]
+ignoredPaths = [ "Dockerfile", "docker-compose.yml", ".dockerignore" ]
+
+[env]
+NODE_ENV = "development"
