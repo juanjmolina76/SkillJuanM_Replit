@@ -17,4 +17,4 @@ RUN npm install
 EXPOSE 3000
 
 # comando por defecto en produccion
-CMD ["node", "--watch", app.js"]
+CMD ["node", "--watch", "app.js"]
