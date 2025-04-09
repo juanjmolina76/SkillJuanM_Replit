@@ -17,9 +17,6 @@ RUN apt-get update && apt-get install -y \
 # CREA DIRECOTRIO DE TRABAJO
 COPY . . 
 
-# instala dependencias
-RUN npm install
-
 # expone el puerto que usa la app
 EXPOSE 3000
 
