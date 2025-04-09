@@ -4,7 +4,7 @@ services:
   app:
     build: .
     container_name: mi-app-node
-    working_dir: /hoome/app
+    working_dir: /home/app
     ports:
       - "3000:3000"
     volumes:
