@@ -25,11 +25,12 @@
 
 FROM node:20
 
+# Crea directorio de trabajo
+WORKDIR /home/app
 # Instala dependencias del sistema necesarias para sharp
 RUN apt-get update && apt-get install -y libvips-dev
 
-# Crea directorio de trabajo
-WORKDIR /home/app
+
 
 # Copia solo los archivos necesarios para instalar dependencias
 COPY package*.json ./

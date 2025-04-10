@@ -8,7 +8,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - .:/home/app
+      - .:/home/app:cached
       - ./img:/usr/src/app/public/img
     environment:
       NODE_ENV: production
@@ -17,5 +17,5 @@ services:
       DB_PASSWORD: Skill_JM1976#$
       DB_NAME: skilljm_04
       DB_PORT: 3306
-    command: node app.js
+    #command: node app.js
       
