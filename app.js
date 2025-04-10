@@ -11,7 +11,7 @@ const session = require('express-session')
 const path = require('path')
 
 
-const port = 8080 || process.env.PORT || 3000
+const port =  process.env.PORT || 3000 //8080 ||
 
 //para utilizar motor de vistas ejs
 app.set('view engine', 'ejs')
