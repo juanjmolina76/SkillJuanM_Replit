@@ -8,8 +8,9 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - .:/home/app:cached
+      - .:/home/app
       - ./img:/usr/src/app/public/img
+      - /home/app/node_modules  #agregado
     environment:
       NODE_ENV: production
       DB_HOST: mysql-skilljm.alwaysdata.net
