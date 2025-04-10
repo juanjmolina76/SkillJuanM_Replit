@@ -3,7 +3,7 @@ document.querySelector('body').onload = async () => {
 	const token = localStorage.getItem('jwt-token');
     const idRol = localStorage.getItem('idRol');
 
-	const res = await fetch(`http:///proy/digitales`, {//en REPLIT eliminar el local host,
+	const res = await fetch(`/proy/digitales`, {//en REPLIT eliminar el local host,
         //dejar solo la ruta`/proy/digitales` y en el DOCKER CONTAINER tambien (`http://localhost:8080/proy/digitales`
 		headers: {
 			"Content-Type": "application/json",
