@@ -1,14 +1,30 @@
+/*
 console.log("hola");
 
 resultado = prompt("Dime tu nombre");
 
 document.write(`<h2 class="grad">Hola ${resultado}</h2>`);
-
+ ESTO NO VA
 const edad = (d_edad = prompt("Dime tu edad")) => {
+  document.write(`<p>${resultado} nació el año</p>` + (2024 - d_edad));
+}HASTA ACA NO VA
+  
+
+const edad = () => {
+  const d_edad = prompt("Dime tu edad");
   document.write(`<p>${resultado} nació el año</p>` + (2024 - d_edad));
 }
 edad();
 
+*/
+
+const resultado = prompt("Dime tu nombre");
+const edadIngresada = prompt("Dime tu edad");
+const year = 2024 - parseInt(edadIngresada);
+
+const contenido = `<h2 class="grad">Hola ${resultado}</h2><p>${resultado} nació el año ${year}</p>`;  
+
+document.getElementById('contenido').innerHTML = contenido;
 
 
 
@@ -49,18 +65,21 @@ function capturar() {
   //se capturan los datos desde el formulario. tenía .value;
 
   
-  var nombreCapturar = document.getElementById("name").value;  console.log(nombreCapturar);//
-  var apellidoCapturar = document.getElementById("apellido").value; console.log(apellidoCapturar);//
-  var edadCapturar = document.getElementById("edad").value; console.log(edadCapturar);//
+  var nombreCapturar = document.getElementById("name").value;
+  console.log(nombreCapturar);//
+  var apellidoCapturar = document.getElementById("apellido").value;
+  console.log(apellidoCapturar);//
+  var edadCapturar = document.getElementById("edad").value;
+  console.log(edadCapturar);//
   var emailCapturar = document.getElementById("email").value;// 
   console.log(emailCapturar); 
- 
+
   var fechaNacCapturar = document.getElementById("fecha").value; 
   
 console.log(fechaNacCapturar);
 
 /*
-function comprobar() = {
+
 */
   
     if(nombreCapturar == ' '|| nombreCapturar == ''|| apellidoCapturar== ' '|| apellidoCapturar== ''|| edadCapturar== ' '|| edadCapturar== ''
@@ -87,6 +106,7 @@ function agregar() {
   baseDatos.push(nuevoSujeto);
   console.log(baseDatos);//
   document.getElementById("tabla").innerHTML += '<body><td>' + nuevoSujeto.nombre + '</td><td>' + nuevoSujeto.apellido + '</td><td>' + nuevoSujeto.edad + '</td><td>' + nuevoSujeto.email + '</td><td>' + nuevoSujeto.fecha + '</td></body>';
+
 };
 
 //en la consola puedo ver que los datos se guardaron en el array.
@@ -121,6 +141,8 @@ function funcionCambio() {
   const link = document.querySelectorAll("a")
   console.log(link)
 }
+
+
 
 
 
