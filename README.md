@@ -32,4 +32,4 @@ un a prueba de multiples promps de nombre y edad simulados.
 Y con el Test Case de login (hola_hola2.js)
 -usuario valido
 -usuario invalido
-Para luego validar el ingreso a /proyectosDigitales.html
+Para luego validar el ingreso a /proyectosDigitales.html 
