@@ -1,4 +1,4 @@
-Este es un Proyecto originado en Sololearn como skiljuan con un html y un css para dar estilo a na pagina de muestra.
+Este es un Proyecto originado en Sololearn como skiljuan con un html y un css para dar estilo a una pagina de muestra.
 Subido a Replit y luego creado un repositorio en github para gestionar los cambios a traves de git.
 Igualmente la idea era ademas vincular a un repositorio local en mi pc y a traves de Git hacer una nueva rama para 
 despues practicar Git Merge y todos los comandos de uso practico en Git-
@@ -35,13 +35,6 @@ Y con el Test Case de login (hola_hola2.js)
 Para luego validar el ingreso a /proyectosDigitales.html 
 
 
-
-
-
-README.md
-Este es un Proyecto originado en Sololearn como skiljuan con un html y un css para dar estilo a na pagina de muestra. Subido a Replit y luego creado un repositorio en github para gestionar los cambios a traves de git. Igualmente la idea era ademas vincular a un repositorio local en mi pc y a traves de Git hacer una nueva rama para despues practicar Git Merge y todos los comandos de uso practico en Git- Parece que la opcion de usar ssh key es paga
-
--Este cambio lo hice en replit para hacer un commit al repo remoto -Este cambio lo hice desde replit app y hago commit al repo remoto de github.
 
 Nota: Hacer siempre un commit desde el repositorio local hacia github.
 
