@@ -18,8 +18,10 @@
             <p>id: <%= producto.id%></p>
              <p>Descripcion: <%= producto.descripcion %></p>
              <p>Precio: $<%= producto.precio %></p>
-             <p><%= producto.img %></p>
-             <div class=""><img src="/img/<%= producto.img %>" width=""></div>
+          <!--   <p>< %= producto.img % ></p>  ESTO MOSTRABA LA URL ANTES DE CLOUDINARY--> 
+             <div class=""><img src="<%= producto.img %>" 
+              alt="<%=producto.nombre %>" 
+              width=""></div> <!--img src="/img/ < %=producto.nombre %>" width=""-->
              <p>id_tipo: <%= producto.id_tipo %></p>
              <p>Stock: <%= producto.Stock %></p>
              <a href="/detalleProducto/<%=producto.id%>">Leer Más</a>

@@ -11,7 +11,7 @@
     <p>Precio:<input type="number" name="precio" value="<%=registro.precio%>"/></p>
     <p>Imagen:<input type="text" name="img" value="<%=registro.img%>"></p>
     
-    <p><img src="/img/<%= registro.img %>" alt="<%=registro.nombre%>" width="200"></p>    <!--podria inyectar la imagen en el js dinamico en listado.js(con ${ }-->
+    <p><img src="<%= registro.img %>" alt="Imagen de <%=registro.nombre%>" width="200"></p> <!--CABMIADO POR CLOUDINARY, antes era src="/img/< %= registro.img %>" -->   <!--podria inyectar la imagen en el js dinamico en listado.js(con ${ }-->
 
     <input type="hidden" name="idMod" value="<%=registro.id%>">
     

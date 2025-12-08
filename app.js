@@ -7,6 +7,7 @@ const app = express()//levanto express sessions
 const auth = require('./src/config/auth')//verificar que el usuario tenga AUTORIZACION para entrar a todas las rutas de mi RAMA
 const session = require('express-session')
 //const bodyParser = require ('body-parser')
+require('dotenv').config()                                                                                                          //AGREGADO PARA CLOUDINARY
 
 const path = require('path')
 

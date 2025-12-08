@@ -38,7 +38,8 @@ document.querySelector('body').onload = async () => {
                  <td>${registro.precio}</td>
                  <!--td><img src="/img/${registro.img} width="20"></td-->
                  <!--td>${registro.img}</td-->
-                 <td><img src="/img/${registro.img}" width="50"></td> <!--registro.originalname u registro.img-->
+                 <!--td><img src="/img/${registro.img}" width="50"></td --> <!--registro.originalname u registro.img--><!--             COMENTADO POR HABER CAMBIADO A CLOUDINARY-->
+                 <td><img src="${registro.img}" width="50" alt="Imagen de ${registro.nombre}"> </td> <!--                               CAMBIO A CLOUDINARY -->
                  <td>${registro.id_tipo}</td>
                     <td >
                     <button><a href="/modificar/${registro.id}">Modificar</a></button><br>
