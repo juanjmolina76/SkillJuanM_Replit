@@ -189,7 +189,7 @@ eliminar: async (req, res)=>{
     getProys: async (req, res) => {
         try{
             const [ registros] = await conn.query(`SELECT p.*, s.CantEXistente AS Stock
-                                                FROM producto p JOIN stock s ON p.id = s.id_prod;`)
+                                                FROM producto p LEFT JOIN stock s ON p.id = s.id_prod;`) //hacer un left join entre producto y stock
   // //SELECT * FROM producto
             //res.json(registros)
             //const [ ProdStock ] = await conn.query('SELECT p.*, s.CantEXistente AS Stock
