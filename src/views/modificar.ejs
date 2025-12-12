@@ -5,12 +5,12 @@
 <h2 class="grad">MODIFICAR PROYECTO</h2>
 <br>
 <h1><%=tituloDePagina%></h1>
-<form action="/modificar?_metodo=PUT" method="POST">
+<form action="/modificar?_metodo=PUT" method="POST" enctype="multipart/form-data"> <!--enctype para subir imagenes-->
     <p>Nombre:<input type="text" name="nombre" value="<%=registro.nombre%>"/></p>
     <p>Descripcion:<input type="text" name="descripcion" value="<%=registro.descripcion%>"></p>
     <p>Precio:<input type="number" name="precio" value="<%=registro.precio%>"/></p>
-    <p>Imagen:<input type="text" name="img" value="<%=registro.img%>"></p>
-    
+    <p>Imagen:<input type="file" name="img"></p>
+    <!--p>Imagen:<input type="text" name="img" value="< %=registro.img%>"></p-->  <!--antes era un input text, ahora es file para subir imagenes-->
     <p><img src="<%= registro.img %>" alt="Imagen de <%=registro.nombre%>" width="200"></p> <!--CABMIADO POR CLOUDINARY, antes era src="/img/< %= registro.img %>" -->   <!--podria inyectar la imagen en el js dinamico en listado.js(con ${ }-->
 
     <input type="hidden" name="idMod" value="<%=registro.id%>">

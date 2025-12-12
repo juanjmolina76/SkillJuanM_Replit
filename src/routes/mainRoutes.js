@@ -101,9 +101,9 @@ router.put ('/proy', (req, res)=> {
 */
 router.delete ('/proy/:nombre', isLogged, controladores.eliminar)
 
-router.get ('/modificar/:id',  isLogged, controladores.getModificar)/*estaba comentado: isLogged*/
+router.get ('/modificar/:id',  isLogged, upload.single('img'), controladores.getModificar)/*estaba comentado: isLogged*/  //AGREGUÉ upload.single('img') PARA QUE ME PERMITA SUBIR IMAGENES AL MODIFICAR
 
-router.put ('/modificar', isLogged, controladores.actualizar)//le agrego el midelware (que estté logueado) para usar express sessions
+router.put ('/modificar', isLogged, upload.single('img'), controladores.actualizar)//le agrego el midelware (que estté logueado) para usar express sessions
 
 router.get('/proys', controladores.getProys)//NEW
 

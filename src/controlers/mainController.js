@@ -174,6 +174,7 @@ eliminar: async (req, res)=>{
         })
 
     },
+    /*
     actualizar: async (req, res)=> {
         console.log(req.body)
         
@@ -184,7 +185,83 @@ eliminar: async (req, res)=>{
         console.log(modificado)
         res.redirect('/proyectosDigitales.html') 
     },
+    */
+    actualizar: async (req, res) => {
+    const { idMod, nombre, descripcion, precio } = req.body;
 
+    try {
+        // 1 Obtener producto actual
+        const [rows] = await conn.query(
+            'SELECT img, public_id FROM producto WHERE id=?',
+            [idMod]
+        );
+
+        if (!rows.length) {
+            return res.status(404).send('Producto no encontrado');
+        }
+
+        let imgUrl = rows[0].img;
+        let publicId = rows[0].public_id;
+
+        // 2 Si subieron nueva imagen
+        if (req.file) {
+            // borrar imagen anterior
+            if (publicId) {
+                await cloudinary.uploader.destroy(publicId, {
+                    invalidate: true
+                });
+            }
+
+            // procesar imagen
+            const buffer = await sharp(req.file.buffer)
+                .resize(640)
+                .jpeg({ quality: 80 })
+                .toBuffer();
+
+            // subir nueva
+            const uploadResult = await new Promise((resolve, reject) => {
+                cloudinary.uploader.upload_stream(
+                    { folder: 'productos',
+                    resource_type: 'image',
+                    use_filename: true,
+                    unique_filename: true,
+                    public_id: path.parse(req.file.originalname).name.replace(/\s+/g, '_'), // nombre sin extensión y sin espacios .name.replace(/\s+/g, '_
+                    },
+                    (err, result) => {
+                        if (err) reject(err);
+                        else resolve(result);
+                    }
+                ).end(buffer);
+            });
+
+            imgUrl = uploadResult.secure_url;
+            publicId = uploadResult.public_id;
+        }
+
+        // 3 Update final
+        await conn.query(
+            `UPDATE producto 
+             SET nombre=?, descripcion=?, precio=?, img=?, public_id=?
+             WHERE id=?`,
+            [nombre, descripcion, precio, imgUrl, publicId, idMod]
+        );
+
+        res.redirect('/proyectosDigitales.html');
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error al actualizar producto');
+    } finally {
+        conn.releaseConnection();
+    }
+},
+
+    
+    
+    
+    
+    
+    
     //NEW
     getProys: async (req, res) => {
         try{
