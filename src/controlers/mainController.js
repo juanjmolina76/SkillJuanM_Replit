@@ -68,6 +68,8 @@ module.exports = {
                     return new Promise((resolve, reject) => {
                         cloudinary.uploader.upload_stream(
                             {   folder: "productos",
+                                /*background_removal: "cloudinary_ai",*/
+                                effect: "gen_background_replace:prompt_Minimalist background with a soft pastel gradient even lighting",
                                 resource_type: "image",
                                 use_filename: true,
                                 unique_filename: true,
