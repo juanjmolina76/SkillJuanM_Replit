@@ -1,4 +1,7 @@
+require('dotenv').config();
+
 module.exports={
-    secretKey: 'cl@v3_s3cr3t@',
-    tokenExpiresIn: '1h'
+    secretKey: process.env.JWT_SECRET_KEY,
+    tokenExpiresIn: process.env.JWT_EXPIRES_IN 
 }
+
