@@ -1,4 +1,4 @@
-const { conn } = require('../db/dbconnect')
+const { conn } = require('../db/dbconnect');
 const { validationResult } = require("express-validator");
 const path = require("path");
 const sharp = require("sharp");

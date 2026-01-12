@@ -28,7 +28,7 @@ app.use(express.json());
 
 
 app.use(session({//inicializo express sessions y lo configuro
-    secret: "S3cr3t_H@sh01",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     //cookie: { secure: false }
