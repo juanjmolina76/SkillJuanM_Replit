@@ -346,6 +346,9 @@ getmiCart: async (req, res) => {
         res.status(500).send('Hubo un error obteniendo los datos del carrito...')
      }     
 },
+
+
+/*
 orderConfirmation: async (req, res) => {
 
 //const cart_id = req.body.cart_id;
@@ -385,8 +388,82 @@ try{
 
 }
 
+*/
 
+orderConfirmation: async (req, res) => {
 
+  const user_id = req.session.userId;
 
+  const connection = await conn.getConnection();
 
+  try {
 
+    await connection.beginTransaction();
+
+    // 1 Obtener último carrito
+    const [[cartRow]] = await connection.query(
+      'SELECT MAX(id) as cartId FROM cart WHERE user_id = ?',
+      [user_id]
+    );
+
+    const cartId = cartRow.cartId;
+
+    if (!cartId) {
+      return res.status(404).send('No hay carritos para este usuario');
+    }
+
+    // 2 Obtener items del carrito
+    const [items] = await connection.query(
+      'SELECT * FROM cart_items WHERE cart_id = ?',
+      [cartId]
+    );
+
+    if (items.length === 0) {
+      return res.status(400).send('El carrito está vacío');
+    }
+
+    // 3 Calcular total
+    let totalGeneral = 0;
+
+    items.forEach(item => {
+      totalGeneral += item.price * item.quantity;
+    });
+
+    // 4 Crear orden
+    const [orderResult] = await connection.query(
+      `INSERT INTO orders (user_id, total, status)
+       VALUES (?, ?, 'pending')`,
+      [user_id, totalGeneral]
+    );
+
+    const orderId = orderResult.insertId;
+
+    // 5 Copiar items a order_items
+    for (const item of items) {
+      await connection.query(
+        `INSERT INTO order_items 
+        (order_id, product_id, quantity, price, subtotal)
+        VALUES (?, ?, ?, ?, ?)`,
+        [
+          orderId,
+          item.product_id,
+          item.quantity,
+          item.price,
+          item.price * item.quantity
+        ]
+      );
+    }
+
+    await connection.commit();
+
+    res.render('order-confirmation');
+
+  } catch (error) {
+    await connection.rollback();
+    console.error(error);
+    res.status(500).send('Error al confirmar la orden');
+  } finally {
+    connection.release();
+  }
+}
+}

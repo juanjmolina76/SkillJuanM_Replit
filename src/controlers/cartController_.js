@@ -293,7 +293,8 @@ const user_id = req.session.userId;
 //console.log(cart_id);
 try{
     const  [[cartRow]]  = await conn.query (
-        'SELECT max(id) as cartId FROM cart WHERE user_id =?',[req.session.userId])
+        'SELECT max(id) as cartId FROM cart WHERE user_id =?',[req.session.userId]) //obtengo el ultimo cartId del usuario logueado ¡¡¡¡OJO que puede tener varios carritos anteriores !!! 
+        // por eso el MAX pero deberia filtrar por status='completed' o 'active' si quiero el ultimo en proceso o el ultimo finalizado
         
      
         const cartId = cartRow.cartId ; //Extraigo el `cartId` directamente ó (const cartId = cartRow.cartId -2)le resto 1 o 2 al ultimo para ver anteriores
