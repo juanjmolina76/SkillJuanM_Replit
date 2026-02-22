@@ -398,7 +398,7 @@ orderConfirmation: async (req, res) => {
 
   try {
 
-    await connection.beginTransaction();
+    
 
     // 1 Obtener último carrito
     const [[cartRow]] = await connection.query(
@@ -422,12 +422,51 @@ orderConfirmation: async (req, res) => {
       return res.status(400).send('El carrito está vacío');
     }
 
-    // 3 Calcular total
+    await connection.beginTransaction();
+
+// 3 Obtener precios REALES y calcular total
+const productIds = items.map(item => item.product_id);
+
+const [productos] = await connection.query(
+  `SELECT id, precio AS price, nombre
+   FROM producto
+   WHERE id IN (?)`,
+  [productIds]
+);
+
+const productosMap = {};
+productos.forEach(p => {
+  productosMap[p.id] = p;
+});
+
+//4 Calcular total con precios reales
+let totalGeneral = 0;
+
+for (const item of items) {
+  const producto = productosMap[item.product_id];
+
+  if (!producto) {
+    throw new Error("Producto no encontrado");
+  }
+
+  totalGeneral += producto.price * item.quantity;
+}
+
+
+
+/*
+
+    // 3 Calcular total (ANTES ERA:)
     let totalGeneral = 0;
 
     items.forEach(item => {
       totalGeneral += item.price * item.quantity;
     });
+*/
+
+
+
+
 
     // 4 Crear orden
     const [orderResult] = await connection.query(
@@ -438,8 +477,13 @@ orderConfirmation: async (req, res) => {
 
     const orderId = orderResult.insertId;
 
+
+
+
     // 5 Copiar items a order_items
     for (const item of items) {
+        const producto = productosMap[item.product_id];
+
       await connection.query(
         `INSERT INTO order_items 
         (order_id, product_id, quantity, price, subtotal)
@@ -448,8 +492,8 @@ orderConfirmation: async (req, res) => {
           orderId,
           item.product_id,
           item.quantity,
-          item.price,
-          item.price * item.quantity
+          producto.price,
+          producto.price * item.quantity
         ]
       );
     }
@@ -459,7 +503,7 @@ orderConfirmation: async (req, res) => {
     res.render('order-confirmation');
 
   } catch (error) {
-    await connection.rollback();
+    await connection.rollback(); //se ejecuta solo si hubo beginTransaction()  
     console.error(error);
     res.status(500).send('Error al confirmar la orden');
   } finally {

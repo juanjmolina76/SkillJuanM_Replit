@@ -7,12 +7,13 @@ const app = express()//levanto express sessions
 const auth = require('./src/config/auth')//verificar que el usuario tenga AUTORIZACION para entrar a todas las rutas de mi RAMA
 const session = require('express-session')
 //const bodyParser = require ('body-parser')
+const { PORT } = require ('./src/config.js')
 require('dotenv').config()                                                                                                          //AGREGADO PARA CLOUDINARY
 
 const path = require('path')
 
 
-const port =  process.env.PORT || 3000 //8080 ||
+const port =  PORT || 3000 //8080 ||
 
 //para utilizar motor de vistas ejs
 app.set('view engine', 'ejs')
