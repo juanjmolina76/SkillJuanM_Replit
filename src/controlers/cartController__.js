@@ -348,4 +348,166 @@ getmiCart: async (req, res) => {
 },
 
 
+/*
+orderConfirmation: async (req, res) => {
+
+//const cart_id = req.body.cart_id;
+const user_id = req.session.userId;
+//console.log(cart_id);
+try{
+    const  [[cartRow]]  = await conn.query (
+        'SELECT max(id) as cartId FROM cart WHERE user_id =?',[req.session.userId])
+        
+     
+        const cartId = cartRow.cartId ; //Extraigo el `cartId` directamente ó (const cartId = cartRow.cartId -2)le resto 1 o 2 al ultimo para ver anteriores
+        console.log('último cartId:', cartId)
+
+        if (!cartId) {
+            return res.status(404).send('No hay carritos para este usuario');
+        }
+
+
+    const [ sqlOrder ] = await conn.query(
+        `INSERT INTO orders (user_id, cartItem_id, date) VALUES (?,?,?)`,
+        [user_id, cartId, new Date() ]
+
+        
+    );
+    console.log(sqlOrder)
+} catch (error) {
+    console.error("error al confirmar la orden definitiva:", error);
+    res.status(500).send("Hubo un error al procesar la confirmacion de la orden.");
+}finally {
+    res.render('order-confirmation');
+}
+
+
+
+  //  res.render('order-confirmation');
+}
+
+}
+
+*/
+
+orderConfirmation: async (req, res) => {
+
+  const user_id = req.session.userId;
+
+  const connection = await conn.getConnection();
+
+  try {
+
+    
+
+    // 1 Obtener último carrito
+    const [[cartRow]] = await connection.query(
+      'SELECT MAX(id) as cartId FROM cart WHERE user_id = ?',
+      [user_id]
+    );
+
+    const cartId = cartRow.cartId;
+
+    if (!cartId) {
+      return res.status(404).send('No hay carritos para este usuario');
+    }
+
+    // 2 Obtener items del carrito
+    const [items] = await connection.query(
+      'SELECT * FROM cart_items WHERE cart_id = ?',
+      [cartId]
+    );
+
+    if (items.length === 0) {
+      return res.status(400).send('El carrito está vacío');
+    }
+
+    await connection.beginTransaction();
+
+// 3 Obtener precios REALES y calcular total
+const productIds = items.map(item => item.product_id);
+
+const [productos] = await connection.query(
+  `SELECT id, precio AS price, nombre
+   FROM producto
+   WHERE id IN (?)`,
+  [productIds]
+);
+
+const productosMap = {};
+productos.forEach(p => {
+  productosMap[p.id] = p;
+});
+
+//4 Calcular total con precios reales
+let totalGeneral = 0;
+
+for (const item of items) {
+  const producto = productosMap[item.product_id];
+
+  if (!producto) {
+    throw new Error("Producto no encontrado");
+  }
+
+  totalGeneral += producto.price * item.quantity;
+}
+
+
+
+/*
+
+    // 3 Calcular total (ANTES ERA:)
+    let totalGeneral = 0;
+
+    items.forEach(item => {
+      totalGeneral += item.price * item.quantity;
+    });
+*/
+
+
+
+
+
+    // 4 Crear orden
+    const [orderResult] = await connection.query(
+      `INSERT INTO orders (user_id, total, status)
+       VALUES (?, ?, 'pending')`,
+      [user_id, totalGeneral]
+    );
+
+    const orderId = orderResult.insertId;
+
+
+
+
+    // 5 Copiar items a order_items
+    for (const item of items) {
+        const producto = productosMap[item.product_id];
+
+      await connection.query(
+        `INSERT INTO order_items 
+        (order_id, product_id, quantity, price, subtotal)
+        VALUES (?, ?, ?, ?, ?)`,
+        [
+          orderId,
+          item.product_id,
+          item.quantity,
+          producto.price,
+          producto.price * item.quantity
+        ]
+      );
+    }
+
+    await connection.commit();
+
+    res.render('order-confirmation');
+
+  } catch (error) {
+    await connection.rollback(); //se ejecuta solo si hubo beginTransaction()  
+    console.error(error);
+    res.status(500).send('Error al confirmar la orden');
+  } finally {
+    connection.release();
+  }
+}
 }
