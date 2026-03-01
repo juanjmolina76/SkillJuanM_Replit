@@ -3,7 +3,7 @@ const router = express.Router()
 //const { body } = require ("express-validator");/*Agrego Express Validator*/ 
 
 const cartController = require('../controlers/cartController');
-const orderConfirmation = require('../controlers/checkoutController').orderConfirmation;
+const orderConfirmation = require('../controlers/checkoutController').confirmOrder;
 
 const isLogged = (req, res, next)=> {//si no hay req session userId, redireccioname a login, si hay sesion activa...next (ir a modificar)
     if (!req.session.userId){

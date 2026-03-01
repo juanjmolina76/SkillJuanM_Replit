@@ -90,7 +90,7 @@ async function createOrderFromCart(userId) {
 
       const unitPrice = Number(producto.price);
       const quantity = Number(item.quantity);
-
+    // 7️⃣ Insertar order_items
       await connection.query(
         `INSERT INTO order_items 
          (order_id, product_id, quantity, price, subtotal)
@@ -104,7 +104,7 @@ async function createOrderFromCart(userId) {
         ]
       );
     }
-
+      // ✅ 8️⃣ Confirmar todo
     await connection.commit();
 
     return {
@@ -123,23 +123,79 @@ async function createOrderFromCart(userId) {
 
 
 async function updateOrderStatus(orderId, status) {
-  await pool.query(
+  await conn.query(
     `UPDATE orders SET status = ? WHERE id = ?`,
     [status, orderId]
   );
 }
 
 
-async function savePreferenceId(orderId, preferenceId) {
-  await pool.query(
+async function savePreferenceId(orderId, preferenceId) { //¿es lo mismo preferenceId que response.id es el id de la preferencia que devuelve MercadoPago?
+  await conn.query(
     `UPDATE orders SET preference_id = ? WHERE id = ?`,
     [preferenceId, orderId]
   );
 }
 
+async function savePayment(paymentData) {
+
+  await conn.query(
+    `INSERT INTO payments (
+      order_id,
+      user_id,
+      mp_preference_id,
+      mp_payment_id,
+      mp_merchant_order_id,
+      status,
+      status_detail,
+      payment_method,
+      payment_type,
+      transaction_amount
+    )
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    [
+      paymentData.order_id,
+      paymentData.user_id,
+      paymentData.preference_id,
+      paymentData.payment_id,
+      paymentData.merchant_order_id,
+      paymentData.status,
+      paymentData.status_detail,
+      paymentData.payment_method,
+      paymentData.payment_type,
+      paymentData.transaction_amount
+    ]
+  );
+}
+
+async function getOrderById(orderId) {
+  const [rows] = await conn.query(
+    `SELECT id, user_id FROM orders WHERE id = ?`,
+    [orderId]
+  );
+
+  if (!rows.length) {
+    throw new Error("Orden no encontrada");
+  }
+
+  return rows[0];
+}
+
+async function paymentExists(paymentId) {
+  const [rows] = await conn.query(
+    `SELECT id FROM payments WHERE mp_payment_id = ?`,
+    [paymentId]
+  );
+  return rows.length > 0;
+}
+
+
 module.exports = {
   createOrderFromCart,
- /* updateOrderStatus,
-  savePreferenceId
-  */
+  updateOrderStatus,
+  savePreferenceId,
+  savePayment,
+  getOrderById,
+  paymentExists
+  
 };

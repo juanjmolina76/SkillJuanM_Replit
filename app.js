@@ -3,6 +3,7 @@ const override = require('method-override')
 const rutas = require('./src/routes/mainRoutes.js')
 const login = require ('./src/routes/loginRoutes.js')
 const cartRoutes =require ('./src/routes/cartRoutes')
+const mpRoutes = require('./src/routes/mpRoutes');
 const app = express()//levanto express sessions
 const auth = require('./src/config/auth')//verificar que el usuario tenga AUTORIZACION para entrar a todas las rutas de mi RAMA
 const session = require('express-session')
@@ -44,6 +45,9 @@ app.use('/login', login)//login/login  o /login/registro todo lo que venga con /
 app.use('/',  rutas)//('/', auth, rutas) //AUTORIZACION PARA todas LAs RAMAs  // en vez de autenticar una sola ruta en mainRoutes.js //
 
 app.use('/', cartRoutes)
+
+app.use('/api/mp', mpRoutes); // AGREGADO PARA RUTAS DE MERCADOPAGO, TODO LO QUE EMPIECE CON /api/mp LO VA A BUSCAR EN mpRoutes.js
+
 //app.use("/tip", require('./src/routes/mainRoutes.js'))
 
 //app.use('/', auth, rutasAuth)//para que requira el token          //

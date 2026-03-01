@@ -1,3 +1,6 @@
+const orderService = require('../services/orderService');
+const mpService = require('../services/mpService');
+
 async function mercadopagoWebhook(req, res) {
   const paymentId = req.query['data.id'];
 
@@ -13,3 +16,8 @@ async function mercadopagoWebhook(req, res) {
 
   res.sendStatus(200);
 }
+
+module.exports = {
+//  createCheckout,
+  mercadopagoWebhook
+};

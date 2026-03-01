@@ -1,30 +1,39 @@
 const orderService = require('../services/orderService');
-//const mpService = require('../services/mpService');
+const mpService = require('../services/mpService');
 
-async function /*confirmOrder*/orderConfirmation(req, res) {
+async function confirmOrder(req, res) {
   try {
     const userId = req.session.userId;
-/*
-    const { orderId, mpItems } =
+
+// 1️⃣ crear orden
+    const { orderId, mpItems, total} =
       await orderService.createOrderFromCart(userId);
 //
-console.log(("Orden creada: ", orderId, "Total:", total, "Items:", mpItems));
+//console.log(("Orden creada: ", orderId, "Total:", total, "Items:", mpItems));
 
-res.render('order-confirmation');
+console.log("Orden creada:", orderId);
+console.log("Items MP:", mpItems);
+console.log("Total:", Number(total));
+
+//res.render('order-confirmation');
 //
-
+// 2️⃣ crear preferencia
     const preference =
       await mpService.createPreference(orderId, mpItems);
 
+// 3️⃣ guardar preference id
     await orderService.savePreferenceId(orderId, preference.id);
 
-    res.redirect(preference.init_point);
-*/
+     // 4️⃣ redirigir a MP
+  return res.redirect(preference.init_point);
+
+
+/*
 await orderService.createOrderFromCart(userId);
 
 res.send('order-confirmation');
 
-
+*/
 
   } catch (error) {
     console.error(error);
@@ -33,7 +42,7 @@ res.send('order-confirmation');
 }
 
 module.exports = {
-  //confirmOrder,
-  orderConfirmation
+  confirmOrder
+  
 };
 
