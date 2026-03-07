@@ -82,3 +82,12 @@ Diseño responsive con CSS
 JavaScript vanilla para interactividad del lado del cliente
 Formularios para contacto y gestión de datos
 La aplicación funciona como un portafolio profesional que combina la presentación de trabajos (arquitectura/desarrollo) con capacidades de e-commerce para vender o mostrar proyectos.
+
+En nueva consola:
+./ngrok.exe http 4000
+
+
+y en la app terrerojuanterrero (SkillJM_googlesheets)
+3000/sync-orders
+
+activa la funcion de actualizacion de stok y escritura de orders_items en la sheet de google (solapa order_confirmated)
