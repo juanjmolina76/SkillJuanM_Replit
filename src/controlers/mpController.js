@@ -66,7 +66,7 @@ async function webhook(req, res) {
     await orderService.savePayment({
       order_id: orderId,
       user_id: userId,
-      preference_id: payment.preference_id,
+      preference_id: payment.preference_id, //payment.order?.preference_id 
       payment_id: payment.id,
       merchant_order_id: payment.order?.id,
       status: payment.status,
@@ -80,6 +80,7 @@ async function webhook(req, res) {
     if (payment.status === "approved") {
       await orderService.updateOrderStatus(orderId, "approved");
       console.log("Orden aprobada:", orderId);
+      console.log("preferenceId:", payment.order?.preference_id);
     }
 
   } catch (error) {
