@@ -8,10 +8,10 @@ const mysql = require('mysql2')
 
 const pool = mysql.createPool ({    
     
-    host: process.env.DB_HOST, //'mysql-skilljm.alwaysdata.net', //localhost
-    user: process.env.DB_USER, //skilljm', //root
-    password: process.env.DB_PASSWORD, //Skill_JM1976#$', //admin
-    database: process.env.DB_NAME, //'skilljm_04', //testing
+    host: process.env.DB_HOST, //localhost
+    user: process.env.DB_USER, ///root
+    password: process.env.DB_PASSWORD, //admin
+    database: process.env.DB_NAME, //testing
     port: process.env.DB_PORT, 
     waitForConnections: true,
     connectionLimit: 10,
