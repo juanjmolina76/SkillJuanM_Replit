@@ -81,7 +81,9 @@ async function webhook(req, res) {
       await orderService.updateOrderStatus(orderId, "approved");
       console.log("Orden aprobada:", orderId);
       console.log("preferenceId:", payment.order?.preference_id);
+      //res.redirect(`/success?orderId=${orderId}`); // redirigir a página de éxito con orderId
     }
+    
 
   } catch (error) {
     console.error("Webhook error:", error);
