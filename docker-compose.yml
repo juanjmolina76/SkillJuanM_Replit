@@ -11,12 +11,20 @@ services:
       - .:/home/app
       - ./img:/usr/src/app/public/img
       - /home/app/node_modules  #agregado
+    env_file:
+      - .env
     environment:
       NODE_ENV: production
-      DB_HOST: mysql-skilljm.alwaysdata.net
-      DB_USER: skilljm
-      DB_PASSWORD: Skill_JM1976#$
-      DB_NAME: skilljm_04
-      DB_PORT: 3306
+
     #command: node app.js
-      
+
+  ngrok:
+    image: ngrok/ngrok:latest
+    container_name: mi-ngrok
+    depends_on:
+    - app
+    ports:
+    - "4040:4040"
+    env_file:
+    - .env
+    command: http app:4000

@@ -87,6 +87,9 @@ En nueva consola:
 ./ngrok.exe http 4000
 
 
+8. Agrego en .env y en docker-compose.yml la configuracion para que las credenciales de bd estén protegidas.
+
+
 y en la app terrerojuanterrero (SkillJM_googlesheets)
 3000/sync-orders
 
