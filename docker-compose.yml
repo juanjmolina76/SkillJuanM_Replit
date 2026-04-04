@@ -6,7 +6,7 @@ services:
     container_name: mi-app-node
     working_dir: /home/app
     ports:
-      - "3000:3000"
+      - "4000:4000"
     volumes:
       - .:/home/app
       - ./img:/usr/src/app/public/img
