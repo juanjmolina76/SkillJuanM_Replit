@@ -20,8 +20,9 @@ async function createPreference(orderId, items) {
         pending: `${BASE_URL}/pending`
       },
       auto_return: "approved",
-      notification_url: "https://subcerebellar-samira-mesially.ngrok-free.dev/api/mp/webhook"
-      
+      notification_url: "${BASE_URL}/api/mp/webhook"
+      //"https://subcerebellar-samira-mesially.ngrok-free.dev/api/mp/webhook"
+      //"${BASE_URL}/api/mp/webhook"
       //`${process.env.BASE_URL}/api/mp/webhook`
 
 /*

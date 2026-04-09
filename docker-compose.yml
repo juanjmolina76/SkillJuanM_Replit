@@ -28,3 +28,16 @@ services:
     env_file:
     - .env
     command: http app:4000
+    profiles: ["ngrok"]
+
+  tunnel:
+    image: cloudflare/cloudflared:latest
+    container_name: mi-cloudflared
+    depends_on:
+      - app
+    command: tunnel --no-autoupdate --url http://app:4000
+    profiles: ["cloudflare"]
+
+    #docker-compose --profile ngrok up
+
+    #docker-compose --profile cloudflare up
