@@ -7,6 +7,7 @@ services:
     working_dir: /home/app
     ports:
       - "4000:4000"
+    restart: unless-stopped
     volumes:
       - .:/home/app
       - ./img:/usr/src/app/public/img
@@ -25,6 +26,7 @@ services:
     - app
     ports:
     - "4040:4040"
+    restart: unless-stopped
     env_file:
     - .env
     command: http app:4000
