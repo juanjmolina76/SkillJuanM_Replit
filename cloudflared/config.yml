@@ -1,0 +1,7 @@
+tunnel: 32b96996-a30a-4f8c-af3a-50d720f8624a
+credentials-file: /etc/cloudflared/32b96996-a30a-4f8c-af3a-50d720f8624a.json
+
+ingress:
+  - hostname: api.juanzito.work
+    service: http://app:4000
+  - service: http_status:404
