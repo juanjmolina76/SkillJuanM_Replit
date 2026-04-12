@@ -39,7 +39,7 @@ services:
       - app
     command: tunnel --no-autoupdate run #skill_JM #--url http://app:4000
     volumes:
-      - ./cloudflared:/etc/cloudflared
+    - ${PWD}/cloudflared:/etc/cloudflared  #./cloudflared:/etc/cloudflared
     profiles: ["cloudflare"]
 
     #docker-compose --profile ngrok up
