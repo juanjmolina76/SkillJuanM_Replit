@@ -142,3 +142,7 @@ public/img/*
 !public/img/login.jpg
 !public/img/logout.jpg
 !public/img/Fases.gif
+
+# cloudflare tunnel
+.cloudflared/
+
