@@ -45,3 +45,8 @@ services:
     #docker-compose --profile ngrok up
 
     #docker-compose --profile cloudflare up
+
+    #en .gitignore agregar: .cloudflared/ , por eso la carpeta cloudflared la tengo q crear afuera del proyecto, para que no se suba a github, 
+    #y dentro de esa carpeta colocar el archivo de configuracion del tunnel, el cual se obtiene al crear el tunnel en cloudflare, y ese archivo se llama: skill_JM.json o la ....json
+    # .json y el config.yml. El cert.pem es necesario si uso cloudlfared login, pero si ya tengo el .json con las credenciales del tunnel, no es necesario el cert.pem, por eso no lo subo a github, 
+    # y el config.yml es para configurar opciones adicionales del tunnel, como el nombre del tunnel, la url a la que se va a conectar, etc.
