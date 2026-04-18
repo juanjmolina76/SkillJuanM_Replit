@@ -56,13 +56,18 @@ async function webhook(req, res) {
     console.log("Payment status:", payment.status);
 
     // evitar duplicados
+    /* ELIMINIADO: pre-chek de duplicados
     const exists = await orderService.paymentExists(payment.id);
     if (exists) {
       console.log("Payment ya registrado");
       return;
     }
+    */
 
     // guardar payment
+  // 🟩 REEMPLAZADO: idempotencia basada en DB (UNIQUE mp_payment_id)
+    try {
+
     await orderService.savePayment({
       order_id: orderId,
       user_id: userId,
@@ -76,7 +81,22 @@ async function webhook(req, res) {
       transaction_amount: payment.transaction_amount
     });
 
+} catch (err) {
+      if (err.code === 'ER_DUP_ENTRY' || err.errno === 1062) {
+        console.log("Payment duplicado detectado por DB");
+        // 🟨 IMPORTANTE: NO hacer return aquí (ver abajo)
+      } else {
+        throw err;
+      }
+    }
+   /*
+    🟨 IMPORTANTE:
+    No dependemos de si fue insert nuevo o duplicado.
+    Siempre procesamos el estado del payment.
+    */
+
     // actualizar orden
+       // 🟩 MEJORADO: update de orden SIEMPRE ejecuta si está approved
     if (payment.status === "approved") {
       await orderService.updateOrderStatus(orderId, "approved");
       console.log("Orden aprobada:", orderId);
