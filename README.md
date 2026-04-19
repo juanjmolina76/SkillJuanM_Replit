@@ -1,3 +1,8 @@
+|    Aplicación e-commerce end-to-end containerizada 
+     con integración de pagos, 
+     sincronización de stock externa y testing E2E        |
+
+
 Este es un Proyecto originado en Sololearn como skiljuan con un html y un css para dar estilo a una pagina de muestra.
 Subido a Replit y luego creado un repositorio en github para gestionar los cambios a traves de git.
 Igualmente la idea era ademas vincular a un repositorio local en mi pc y a traves de Git hacer una nueva rama para 
