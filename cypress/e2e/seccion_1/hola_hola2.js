@@ -2,7 +2,7 @@ describe('Acceder a cards logueado', () => {
 
 
 it('Login con usuario valido', () => {
-    cy.visit('http://localhost:3000/login.html')
+    cy.visit('http://localhost:4000/login.html')
     cy.get('input[name="user"]').type('javier');
     cy.get('input[name="password"]').type('javier');
     // Click en el botón (es de tipo "button")
@@ -15,3 +15,13 @@ it('Login con usuario valido', () => {
 
 
 });
+/*
+npx cypress open
+
+npx cypress run
+*/ 
+
+
+
+
+
