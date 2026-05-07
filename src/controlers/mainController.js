@@ -10,7 +10,7 @@ module.exports = {
 
     getListado: async (req, res) => {
         try{
-            const [ registros] = await conn.query(`SELECT * FROM producto`)
+            const [ registros] = await conn.query(`SELECT * FROM producto WHERE activo = 1`)// SELECT * FROM producto WHERE activo = 1; para mostrar solo los activos
             res.json(registros)
         } catch (error){
             throw error
@@ -150,7 +150,7 @@ eliminar: async (req, res)=>{
 
 //3 - Eliminar el registro de la base de datos
         await conn.query(
-        'DELETE FROM producto WHERE id=?', 
+        'UPDATE producto SET activo = 0 WHERE id=?', //UPDATE producto SET activo=0 WHERE id=? para eliminar logicamente y no fisicamente // DELETE FROM producto WHERE id=?
         [idEliminar]
         );
 //4 - Redirigir a la pagina proyectos Digitales
@@ -268,7 +268,7 @@ eliminar: async (req, res)=>{
     getProys: async (req, res) => {
         try{
             const [ registros] = await conn.query(`SELECT p.*, s.CantEXistente AS Stock
-                                                FROM producto p LEFT JOIN stock s ON p.id = s.id_prod;`) //hacer un left join entre producto y stock
+                                                FROM producto p LEFT JOIN stock s ON p.id = s.id_prod WHERE p.activo = 1;`) //hacer un left join entre producto y stock  /// WHERE p.activo =1 para mostrar solo los activos
   // //SELECT * FROM producto
             //res.json(registros)
             //const [ ProdStock ] = await conn.query('SELECT p.*, s.CantEXistente AS Stock
