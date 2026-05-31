@@ -4,7 +4,7 @@ console.log("hola");
 resultado = prompt("Dime tu nombre");
 
 document.write(`<h2 class="grad">Hola ${resultado}</h2>`);
- ESTO NO VA
+ESTO NO VA
 const edad = (d_edad = prompt("Dime tu edad")) => {
   document.write(`<p>${resultado} nació el año</p>` + (2024 - d_edad));
 }HASTA ACA NO VA
@@ -20,7 +20,7 @@ edad();
 
 const resultado = prompt("Dime tu nombre");
 const edadIngresada = prompt("Dime tu edad");
-const year = 2024 - parseInt(edadIngresada);
+const year = 2026 - parseInt(edadIngresada);
 
 const contenido = `<h2 class="grad">Hola ${resultado}</h2><p>${resultado} nació el año ${year}</p>`;  
 
