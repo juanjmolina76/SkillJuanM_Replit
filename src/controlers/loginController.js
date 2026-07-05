@@ -4,13 +4,31 @@ const crypt = require('bcryptjs')
 const jwtconfig = require('./../config/jwtconfig.js')
 
 module.exports = {
-    registro: async (req, res)=> {//en mi bd, la tabla usuario tiene 3 columnas + id_rol
+    registro: async (req, res) => {//en mi bd, la tabla usuario tiene 3 columnas + id_rol
         const {user, email, password} = req.body
         const encriptado = await crypt.hash(password, 5)
         const [creado] = await conn.query('INSERT INTO usuario (username, email, password, id_rol) VALUES (?,?,?,?);', [user, email, encriptado, 2])//cambiar a 1 para crear admin, sino dejar en 2 para usuarios
         console.log(creado)
-        res.redirect('/login.html')
+        res.redirect('/login.html');
 },
+//Funcion para crear n admin (solo accesible para SuperAdmin)
+    crearAdmin: async (req,res) => {
+   //verificar que el usuario actual sea SuperAdmin (id_rol = 3 )
+        if (!req.session.user || req.session.user.id_rol !== 3 ) {
+        return res.status(403).send("No tienes permiso para crear admins.");
+        } 
+        const { user,email, password } = req.body;
+        const encriptado = await crypt.hash(password, 5);
+
+   // Asignar id_rol = 1 (admin)
+        const [creado] = await conn.query(
+    'INSERT INTO usuario (username, email, password, id_rol) VALUES (?,?,?,?);',
+    [user, email, encriptado, 1]// <-- 1 para admins
+   );
+   console.log(creado);
+   res.redirect('/admin/usuarios');
+},
+
     login: async (req,res)=> {
         // VER SI TENGO Q AGREGAR EL CAMPO mail AL LOGIN ***
         //let token // BORRAR ??
@@ -29,10 +47,22 @@ module.exports = {
 		}
          else { // Error en clase: escribí "expriresIn" en lugar de "expiresIn" y no se genera bien el token
 			
-            token = jtoken.sign({id: valido.id}, jwtconfig.secretKey, {expiresIn: jwtconfig.tokenExpiresIn})
+            const token = jtoken.sign({id: valido.id}, jwtconfig.secretKey, {expiresIn: jwtconfig.tokenExpiresIn})
 			req.session.userId = valido.id //faltaba esta linea
-            res.status(201).send({auth: true, token, idRol: valido.id_rol}) //***AGREGADO desde token,... */
+
+            req.session.user = {
+                id: valido.id,
+                id_rol: valido.id_rol,
+                username: valido.username
+            };
+
+            res.status(201).send({
+                auth: true, 
+                token, 
+                idRol: valido.id_rol
+            }); //***AGREGADO desde token,... */
             console.log(req.session.userId)
+            console.log("Sesion guardada:", req.session.user);
 		}
 },
 
@@ -56,4 +86,4 @@ verificarToken: async (req, res) => {
         
     }
 }
-}
+};

@@ -11,6 +11,10 @@ h1 {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+a {
+  color: rgb(118, 130, 241);
+
+}
 
 #create-form{
   color: magenta;
@@ -77,12 +81,12 @@ h2::selection{
   color: #ffffff;
   height: 14px;
   padding: 10px;
-  background: linear-gradient(to right, #b7b7eb, #ffebee);
+  background: linear-gradient(to right, #9e9ee0, #f67cc5ef);
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
 .dest {
-  color: #ffebee;
+  color: #ffd6dc;
 
 }
 
@@ -217,14 +221,17 @@ label {
 
 input[type='button'],
 button {
+  display: flex;/**/
+  justify-content: center;/**/
+  align-items: center;/**/
   margin: 3px;
-  background-color: #9d7b9c;
+  background-color: #d698d4;
   border: none;
   border-radius: 25px;
   padding: 10px 25px;
   font-weight: bold;
   color: white;
-  width: 100%;
+  /*width: 100%;*/
 }
 /*
 input[type='button']:hover {

@@ -4,6 +4,7 @@ const rutas = require('./src/routes/mainRoutes.js')
 const login = require ('./src/routes/loginRoutes.js')
 const cartRoutes =require ('./src/routes/cartRoutes')
 const mpRoutes = require('./src/routes/mpRoutes');
+const adminRoutes = require('./src/routes/adminRoutes.js')
 const app = express()//levanto express sessions
 const auth = require('./src/config/auth')//verificar que el usuario tenga AUTORIZACION para entrar a todas las rutas de mi RAMA
 const session = require('express-session')
@@ -33,7 +34,10 @@ app.use(session({//inicializo express sessions y lo configuro
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    //cookie: { secure: false }
+    //cookie: { secure: false 
+    // cambiar secure: a true si uso HTTPS
+    // httpOnly: true }
+    
     
 
 })) 
@@ -51,7 +55,7 @@ app.use('/api/mp', mpRoutes); // AGREGADO PARA RUTAS DE MERCADOPAGO, TODO LO QUE
 //app.use("/tip", require('./src/routes/mainRoutes.js'))
 
 //app.use('/', auth, rutasAuth)//para que requira el token          //
-//app.use('/admin', rutasAdmin)
+app.use('/admin', adminRoutes);
 //app.use('/admin', auth, rutasAdmin )
 
 //app.get('/algo',( req, res) =>res.send("hola"))

@@ -1,0 +1,47 @@
+<%- include('partials/header2')%>
+
+<body>
+    <h1>Lista de Usuarios</h1>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Usuario</th>
+            <th>Email</th>
+            <th>Rol Actual</th>
+            <th>Acciones</th>
+        </tr>
+        <% users.forEach(user => { %>
+            <tr>
+                <td><%= user.id %></td>
+                <td><%= user.username %></td>
+                <td><%= user.email %></td>
+                <td>
+                    <% if (user.id_rol === 1) { %>Admin
+                    <% } else if (user.id_rol === 2) { %>Usuario normal
+                    <% } else if (user.id_rol === 3) { %>SuperAdmin<% } %>
+                </td>
+                <td>
+                    <!-- Formulario para cambiar el rol -->
+                    <form action="/admin/usuarios/update-rol" method="POST">
+                        <input type="hidden" name="userId" value="<%= user.id %>">
+                        <select name="newRol">
+                            <option value="2" <%= user.id_rol === 2 ? 'selected' : '' %>>Usuario normal</option>
+                            <option value="1" <%= user.id_rol === 1 ? 'selected' : '' %>>Admin</option>
+                            <!-- Solo el SuperAdmin puede asignar rol 3 -->
+                            <% if (isSuperAdmin) { %>
+                                <option value="3" <%= user.id_rol === 3 ? 'selected' : '' %>>SuperAdmin</option>
+                            <% } %>
+                        </select>
+                        <button type="submit">Actualizar Rol</button>
+                    </form>
+                </td>
+            </tr>
+        <% }); %>
+    </table>
+    <% if (isSuperAdmin) { %>
+        <a href="/admin/crear-admin">Crear Nuevo Admin</a>
+    <% } %>
+    <a href="/">Volver al inicio</a>
+</body>
+
+<%- include('partials/footer')%>

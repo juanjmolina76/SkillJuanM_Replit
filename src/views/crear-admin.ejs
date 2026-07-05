@@ -1,0 +1,14 @@
+<%- include('partials/header2')%>
+
+<body>
+    <h1>Crear Nuevo Admin</h1>
+    <form action="/admin/crear-admin" method="POST">
+        <label>Usuario: <input type="text" name="user" required></label>
+        <label>Email: <input type="email" name="email" required></label>
+        <label>Contraseña: <input type="password" name="password" required></label>
+        <button type="submit">Crear Admin</button>
+    </form>
+    <a href="/admin/usuarios">Volver a la lista de usuarios</a>
+</body>
+
+<%- include('partials/footer')%>
