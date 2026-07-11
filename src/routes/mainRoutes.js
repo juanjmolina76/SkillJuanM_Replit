@@ -4,7 +4,7 @@ const router = express.Router()
 const { body } = require ("express-validator");/*Agrego Express Validator*/ 
 
 const controladores = require('../controlers/mainController');
-
+const paymentController = require('../controlers/paymentController');
 
 
 //const path = require('path')
