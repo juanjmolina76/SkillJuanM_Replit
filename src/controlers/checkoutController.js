@@ -9,7 +9,7 @@ async function confirmOrder(req, res) {
     const { orderId, mpItems, total} =
       await orderService.createOrderFromCart(userId);
 //
-//console.log(("Orden creada: ", orderId, "Total:", total, "Items:", mpItems));
+console.log(("Orden creada: ", orderId, "Total:", total, "Items:", mpItems));//COMENTAR LUEGO
 
 console.log("Orden creada:", orderId);
 console.log("Items MP:", mpItems);

@@ -111,6 +111,10 @@ router.get('/detalleProducto/:id', controladores.getDetalleProducto )//NUEVO
 
 //router.post('/tip',/* body("name").notEmpty(), */controladores.store)
 
+//RUTAS PARA VISTAS DE RESULTADO DE PAGO MERCADO PAGO:
+router.get('/success', paymentController.success);
+router.get('/pending', paymentController.pending);
+router.get('/failure', paymentController.failure);
 
 
 module.exports = router

@@ -6,8 +6,11 @@ const client = new MercadoPagoConfig({
   accessToken: MERCADOPAGO_API_KEY
 });
 
-const preferenceClient = new Preference(client);
-const paymentClient = new Payment(client);
+const preferenceClient = new Preference(client);// AGREGADO
+const paymentClient = new Payment(client);// AGREGADO
+
+console.log(BASE_URL);
+console.log(`${BASE_URL}/api/mp/webhook`);
 
 async function createPreference(orderId, items) {
   const response = await preferenceClient.create({
@@ -20,11 +23,11 @@ async function createPreference(orderId, items) {
         pending: `${BASE_URL}/pending`
       },
       auto_return: "approved",
-      notification_url: `${BASE_URL}/api/mp/webhook`
+      notification_url: `${BASE_URL}/api/mp/webhook`,
       //"https://subcerebellar-samira-mesially.ngrok-free.dev/api/mp/webhook"
       //"${BASE_URL}/api/mp/webhook"
       //`${process.env.BASE_URL}/api/mp/webhook`
-
+      binary_mode: true
 /*
       notification_url: "https://subcerebellar-samira-mesially.ngrok-free.dev/webhook"
 			//"https://localhost:${PORT}/payment/webhook"

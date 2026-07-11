@@ -333,7 +333,15 @@ eliminar: async (req, res)=>{
         } finally{
             conn.releaseConnection();
         }
-    }
+    },
+        success: async (req, res) => {
+
+    res.render('payment/success', {
+        paymentId: req.query.payment_id,
+        orderId: req.query.external_reference,
+        status: req.query.status
+    });
+
 }
 /*
 const store = (req, res) => {

@@ -19,6 +19,7 @@ async function createCheckout(req, res) {
 */
 async function webhook(req, res) {
   try {
+    console.log("req:",req.header)
     console.log("Webhook recibido");
     console.log("Query:", req.query);
     console.log("Body:", req.body);
@@ -101,7 +102,7 @@ async function webhook(req, res) {
       await orderService.updateOrderStatus(orderId, "approved");
       console.log("Orden aprobada:", orderId);
       console.log("preferenceId:", payment.order?.preference_id);
-      //res.redirect(`/success?orderId=${orderId}`); // redirigir a página de éxito con orderId
+      //res.redirect(`/success?orderId=${orderId}`); // redirigir a página de éxito con orderId  
     }
     
 
