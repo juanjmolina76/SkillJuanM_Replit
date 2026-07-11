@@ -1,7 +1,7 @@
 const { Order } = require("mercadopago");
 
 function success(req, res) {
-    res.render('/success', {
+    res.render('success', {
         Order
         //query: req.query <p><%= query.status %></p>
 /*
@@ -13,11 +13,11 @@ function success(req, res) {
 }
 
 function pending(req, res) {
-    res.render('/pending');
+    res.render('pending');
 }
 
 function failure(req, res) {
-    res.render('/failure');
+    res.render('failure');
 }
 
 module.exports = {
