@@ -170,7 +170,7 @@ async function savePayment(paymentData) {
 
 async function getOrderById(orderId) {
   const [rows] = await conn.query(
-    `SELECT id, user_id FROM orders WHERE id = ?`,
+    `SELECT id, user_id, total, status, date FROM orders WHERE id = ?`, //AGREGADO para la confirmacion de payment 
     [orderId]
   );
 
