@@ -343,6 +343,7 @@ eliminar: async (req, res)=>{
     });
 
 }
+}
 /*
 const store = (req, res) => {
         const result = validationResult(req);
