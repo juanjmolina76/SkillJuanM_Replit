@@ -1,0 +1,9 @@
+<%- include('partials/header2')%>
+<!-- views/cart-confirmation.ejs -->
+<h2>Confirmste tu carrito!</h2>
+<p>Tu carrito ha sido confirmado. Ahora debes confirmar tu orden</p>
+<p>Por favor, verifica los detalles de tu pedido. Para proceder con el pago, haz clic en el botón de checkout.</p>
+<br>
+    <form action="/order-confirmation"  method="POST" enctype="multipart/form-data"><button type="submit" >Confirmar orden</button></form>
+
+<a href="/miCart">Volver al carrito confirmado</a>

@@ -216,6 +216,7 @@ const itemQueries = CartData.map(item => {
 await Promise.all(itemQueries); // Ejecutar todas las consultas en paralelo
 
 console.log("Productos guardados en item_cart.");
+    //res.render('cart-confirmation');// AGREGADO PARA RENDERIZAR VISTA DE CONFIRMACION DE CARRITO
 
         res.json({ message: "Checkout procesado correctamente." });
     } catch (error) {
@@ -227,73 +228,7 @@ console.log("Productos guardados en item_cart.");
 
 
 
-/*
-// Función para confirmar compra y guardar en la base de datos
-checkout: async (req, res) => {
-   // const cart = req.session.cart;
-  // let cart;
-    try {
-        console.log("Body recibido en el servidor:", req.body);
 
-        const cartData = JSON.parse(req.body.cartData); // Obtener datos del carrito enviados desde el frontend // cartData
-        if (!cartData || cartData.length === 0) {
-            return res.redirect('/cart');
-        }
-/*
-    if (!cart || cart.length === 0) {
-        return res.redirect('/cart');
-    }
-        
-   */
- /*
-        // Crear la orden en la tabla `cart`
-        const [sqlOrder] = await conn.query(
-            `INSERT INTO cart (user_id, date, status) VALUES (?, ?, ?)`,
-            [req.session.userId, new Date(), 'active']
-        );
-
-        const orderId = sqlOrder.insertId; // Obtén el ID de la orden recién creada
-        console.log("Order ID:", orderId);
-            */
-/*
-        // Obtener precios de los productos
-        const pricesPromises = cart.map(item => {
-            return conn.query('SELECT precio FROM producto WHERE id = ?', [item.productId])
-
-                .then(([rows]) => ({
-                    productId: item.productId,
-                    quantity: req.session.quantity,//: item.quantity, 
-                    price: rows[0]?.precio || 0 // Usar precio 0 si no se encuentra el producto
-                }));
-        });
-*/
-/*
-        // Esperar a que se resuelvan todas las promesas
-        const itemsWithPrices = await Promise.all(pricesPromises);
-        console.log("Items con precios:", itemsWithPrices);
-*/
-/*
-        // Insertar productos en `cart_items`
-        const orderItemsPromises = cartData.map(item => {// =itemsWithPrices.map(item => {
-            return conn.query(
-                'INSERT INTO cart_items (cart_id, product_id, quantity, price, added_at) VALUES (?, ?, ?, ?, ?)',
-                [orderId, item.productId, item.quantity, item.price, new Date()]
-            );
-        });
-
-        await Promise.all(orderItemsPromises);
-
-        // Limpiar el carrito después de la compra
-        req.session.cart = [];
-        res.redirect('/order-confirmation');
-    } catch (error) {
-        console.error("Error en checkout:", error);
-        res.status(500).send("Hubo un error al procesar tu pedido.");
-    } finally {
-        conn.releaseConnection();
-    }
-},
-*/
 
 
 // Función para eliminar producto del carrito  ****** NO FUNCIONA  *******
