@@ -23,7 +23,6 @@ console.log("Total:", Number(total));
 
 // 3️⃣ guardar preference id
     await orderService.savePreferenceId(orderId, preference.id);
-
      // 4️⃣ redirigir a MP
   return res.redirect(preference.init_point);
 
