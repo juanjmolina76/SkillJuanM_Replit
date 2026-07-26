@@ -42,7 +42,9 @@ RUN npm install --include=optional
 COPY . .
 
 # Expone el puerto que usa la app
-EXPOSE 3000
+EXPOSE 4000
 
-# Comando por defecto en producción
-CMD ["node", "--watch", "app.js"]
+# Comando por defecto en PRODUCCION (ver en package.json era:  "start": "node --watch app.js") y uso "npm run dev" cuando programo
+# CMD ["node", "--watch", "app.js"]
+# Comando para DESARROLLO para optimizar el uso en docker (ver en package.json:  "start": "node app.js" Y "dev": "node --watch app.js")
+CMD ["npm", "start"]

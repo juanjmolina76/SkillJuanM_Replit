@@ -1,16 +1,16 @@
 #version: "3.9"
 
 services:
-  app:
+  juanzito-api:
     build: .
-    container_name: mi-app-node
+    container_name: juanzito-api
     working_dir: /home/app
     ports:
       - "4000:4000"
     restart: unless-stopped
     volumes:
       - .:/home/app
-      - ./img:/usr/src/app/public/img
+     #- ./img:/usr/src/app/public/img
       - /home/app/node_modules  #agregado
     env_file:
       - .env
@@ -23,20 +23,20 @@ services:
     image: ngrok/ngrok:latest
     container_name: mi-ngrok
     depends_on:
-    - app
+    - juanzito-api
     ports:
     - "4040:4040"
     restart: unless-stopped
     env_file:
     - .env
-    command: http app:4000
+    command: http juanzito-api:4000
     profiles: ["ngrok"]
 
   tunnel:
     image: cloudflare/cloudflared:latest
     container_name: mi-cloudflared
     depends_on:
-      - app
+      - juanzito-api
     command: tunnel --no-autoupdate run #skill_JM #--url http://app:4000
     volumes:
     - ${PWD}/cloudflared:/etc/cloudflared  #./cloudflared:/etc/cloudflared
