@@ -6,11 +6,22 @@ if (process.env.NODE_ENV !== 'production'){
 
 const mysql = require('mysql2')
 
+const password = process.env.DB_PASSWORD?.replace(/^['"]|['"]$/g, '');
+
+console.log({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  database: process.env.DB_NAME,
+  passwordLength: process.env.DB_PASSWORD?.length,
+});
+
+
+
 const pool = mysql.createPool ({    
     
     host: process.env.DB_HOST, //localhost
     user: process.env.DB_USER, ///root
-    password: process.env.DB_PASSWORD, //admin
+    password: password, //admin
     database: process.env.DB_NAME, //testing
     port: process.env.DB_PORT, 
     waitForConnections: true,
