@@ -8,7 +8,8 @@
         <br>
         <h1><%=tituloDePagina%></h1>
         <!--p>%productos%></p-->
-
+        <a href="#abajo">Ir al final de la página</a>
+        <p id="card">Listado de productos</p>"
 
             <div class="container__cards" id="card">        
      <% productos.forEach(producto => { %>
@@ -39,8 +40,8 @@
       })
      %>
       </div>
+      <p id="abajo"><a href="#card">Volver al inicio de la página</a></p>
     </section>
-        
      </body>
      
 <%- include('partials/footer')%>
